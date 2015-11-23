@@ -13,6 +13,7 @@
 		2B0D0BFD1C0325CC0065C968 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D0BFC1C0325CC0065C968 /* UIKitExtension.swift */; };
 		2B0D0C001C032E520065C968 /* NCTBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D0BFF1C032E520065C968 /* NCTBook.swift */; };
 		2B0D0C021C032E670065C968 /* NCTLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D0C011C032E670065C968 /* NCTLibrary.swift */; };
+		2B993C111C03849200AFFC47 /* JSONProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B993C101C03849200AFFC47 /* JSONProcessing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2B0D0BFC1C0325CC0065C968 /* UIKitExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIKitExtension.swift; path = Framework/UIKitExtension.swift; sourceTree = "<group>"; };
 		2B0D0BFF1C032E520065C968 /* NCTBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NCTBook.swift; path = Model/NCTBook.swift; sourceTree = "<group>"; };
 		2B0D0C011C032E670065C968 /* NCTLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NCTLibrary.swift; path = Model/NCTLibrary.swift; sourceTree = "<group>"; };
+		2B993C101C03849200AFFC47 /* JSONProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONProcessing.swift; path = Model/JSONProcessing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				2B0D0BFF1C032E520065C968 /* NCTBook.swift */,
 				2B0D0C011C032E670065C968 /* NCTLibrary.swift */,
+				2B993C101C03849200AFFC47 /* JSONProcessing.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 				2B0D0C021C032E670065C968 /* NCTLibrary.swift in Sources */,
 				2B0D0BEF1C0316B70065C968 /* AppDelegate.swift in Sources */,
 				2B0D0C001C032E520065C968 /* NCTBook.swift in Sources */,
+				2B993C111C03849200AFFC47 /* JSONProcessing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +300,7 @@
 				2B0D0BFA1C0316B70065C968 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
