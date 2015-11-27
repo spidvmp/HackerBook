@@ -66,6 +66,7 @@ func decode(libro json:JSONDictionary) throws -> NCTBook {
     }
     
     
+    
     return NCTBook(titulo: titulo, autores: autores, tags: tags, urlImagen: img, urlPDF: pdf)
     
 }
