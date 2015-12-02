@@ -10,9 +10,10 @@ import Foundation
 
 
 class NCTLibrary {
-    
+/*
     //MARK: - Properties
-    let libros: NSMutableArray
+    //libros en un array de NCTBook
+    private var libros: [NCTBook]
     let tags: NSMutableArray
     
     
@@ -75,5 +76,5 @@ class NCTLibrary {
         
         return nil;
     }
-    
+    */
 }

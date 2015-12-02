@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //creo el Storyboard
         var sb : UIStoryboard
         
+        //hay que comprobar si es la primera vez y bajar el json de internet
+        downloadJSON()
+        
         //creamos la interfaz grafica
         sb = UIStoryboard(name: "Hackerbook", bundle: nil)
         
@@ -26,6 +29,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = sb.instantiateInitialViewController()
         window?.makeKeyAndVisible()
         return true
+    }
+    
+    
+    func downloadJSON () {
+        //comprueba si ya se ha bajado la primera vez el json, si es que no, se lo baja y lo guarda
+        let def = NSUserDefaults.standardUserDefaults()
+        if !def.boolForKey("firsTime") {
+            //es la primera vez, me lo tengo que bajar
+            print("no lo tengo. Comentada la opcion de ponerlo a true")
+            //def.setBool(true, forKey: "firsTime")
+            
+        } else {
+            //ya lo tengo
+            print("lo tengo")
+        }
+        
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {

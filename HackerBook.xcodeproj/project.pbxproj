@@ -16,6 +16,7 @@
 		2B993C111C03849200AFFC47 /* JSONProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B993C101C03849200AFFC47 /* JSONProcessing.swift */; };
 		2BA29E231C0F5C2000672472 /* Hackerbook.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BA29E221C0F5C2000672472 /* Hackerbook.storyboard */; };
 		2BA29E2A1C0F5DB500672472 /* HackerTVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA29E291C0F5DB500672472 /* HackerTVController.swift */; };
+		2BA29E2C1C0F635800672472 /* books_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BA29E2B1C0F635800672472 /* books_readable.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		2B993C121C03A8ED00AFFC47 /* Pruebas.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Pruebas.playground; path = PlayGrounds/Pruebas.playground; sourceTree = "<group>"; };
 		2BA29E221C0F5C2000672472 /* Hackerbook.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Hackerbook.storyboard; path = Storyboards/Hackerbook.storyboard; sourceTree = "<group>"; };
 		2BA29E291C0F5DB500672472 /* HackerTVController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HackerTVController.swift; path = Controllers/HackerTVController.swift; sourceTree = "<group>"; };
+		2BA29E2B1C0F635800672472 /* books_readable.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = books_readable.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				2BA29E241C0F5CC800672472 /* Controllers */,
 				2B0D0BFE1C032BE20065C968 /* Model */,
 				2B0D0BF01C0316B70065C968 /* Assets.xcassets */,
+				2BA29E2B1C0F635800672472 /* books_readable.json */,
 				2B0D0BF51C0316B70065C968 /* Info.plist */,
 				2BA29E211C0F5BEF00672472 /* Storyboards */,
 				2B0D0BFB1C0325940065C968 /* Framework */,
@@ -168,6 +171,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BA29E2C1C0F635800672472 /* books_readable.json in Resources */,
 				2BA29E231C0F5C2000672472 /* Hackerbook.storyboard in Resources */,
 				2B0D0BF11C0316B70065C968 /* Assets.xcassets in Resources */,
 				2B0D0BF41C0316B70065C968 /* LaunchScreen.storyboard in Resources */,
