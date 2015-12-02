@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var sb : UIStoryboard
         
         //hay que comprobar si es la primera vez y bajar el json de internet
-        downloadJSON()
+        //downloadJSON()
 //        let def = NSUserDefaults.standardUserDefaults()
 //        if !def.boolForKey("firsTime") {
 //            print("no lo tengo. Comentada la opcion de ponerlo a true")

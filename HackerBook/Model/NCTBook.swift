@@ -18,16 +18,19 @@ class NCTBook {
     let tags: NSMutableArray
     let urlImagen : NSURL
     let urlPDF : NSURL
+    let favorite : Bool
     
     //inicializador designado
     //MARK: - Init
-    init(titulo: String?, autores:NSMutableArray, tags: NSMutableArray, urlImagen: NSURL, urlPDF: NSURL){
+    //favorito por defecto es falso
+    init(titulo: String?, autores:NSMutableArray, tags: NSMutableArray, urlImagen: NSURL, urlPDF: NSURL, favorite: Bool = false){
         
         self.titulo = titulo
         self.autores = autores
         self.tags = tags
         self.urlImagen = urlImagen
         self.urlPDF = urlPDF
+        self.favorite = favorite
     }
     
     

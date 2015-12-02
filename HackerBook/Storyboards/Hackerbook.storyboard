@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gjY-Of-0YD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EjY-J5-Q4u">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -49,6 +49,61 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bi7-QW-oc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-206" y="449"/>
+        </scene>
+        <!--Download Controller-->
+        <scene sceneID="SaT-oY-YUR">
+            <objects>
+                <viewController id="EjY-J5-Q4u" customClass="DownloadController" customModule="HackerBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dw2-Ih-40Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="oDk-gx-b4D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ghY-J5-bNF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leyendo datos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHf-Hr-2ft">
+                                <rect key="frame" x="244" y="126" width="113" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="haT-TX-PTP">
+                                <rect key="frame" x="210" y="182" width="181" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="181" id="yvj-h7-lBv"/>
+                                </constraints>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1B-EY-RMa">
+                                <rect key="frame" x="160" y="213" width="280" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="bxF-PK-nfQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="haT-TX-PTP" firstAttribute="centerX" secondItem="ghY-J5-bNF" secondAttribute="centerX" id="CO3-iC-f60"/>
+                            <constraint firstItem="haT-TX-PTP" firstAttribute="top" secondItem="CHf-Hr-2ft" secondAttribute="bottom" constant="35" id="Id1-U0-ZMA"/>
+                            <constraint firstItem="CHf-Hr-2ft" firstAttribute="centerX" secondItem="ghY-J5-bNF" secondAttribute="centerX" id="QXz-Iy-RhI"/>
+                            <constraint firstItem="I1B-EY-RMa" firstAttribute="centerX" secondItem="haT-TX-PTP" secondAttribute="centerX" id="bdC-TI-THM"/>
+                            <constraint firstItem="CHf-Hr-2ft" firstAttribute="centerX" secondItem="ghY-J5-bNF" secondAttribute="centerX" id="iJh-jy-Ubi"/>
+                            <constraint firstItem="I1B-EY-RMa" firstAttribute="top" secondItem="haT-TX-PTP" secondAttribute="bottom" constant="29" id="mIr-d1-zr9"/>
+                            <constraint firstItem="CHf-Hr-2ft" firstAttribute="top" secondItem="dw2-Ih-40Z" secondAttribute="bottom" constant="106" id="ogx-Wl-X8h"/>
+                            <constraint firstItem="haT-TX-PTP" firstAttribute="centerX" secondItem="ghY-J5-bNF" secondAttribute="centerX" id="rS1-ff-cYd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="progressView" destination="haT-TX-PTP" id="1n8-fA-ZXf"/>
+                        <outlet property="statusText" destination="I1B-EY-RMa" id="fxa-F3-rxE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Dd-JA-d4U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-672" y="-184"/>
         </scene>
     </scenes>
 </document>

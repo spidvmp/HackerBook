@@ -13,7 +13,7 @@ import UIKit
 
 extension UIColor {
     
-    func defaultColor() -> UIColor {
+    func defaultColorHacker() -> UIColor {
         return UIColor(red: 15.0/255.0, green: 134.0/255.0, blue: 11.0/255.0, alpha: 1.0);
     }
     
