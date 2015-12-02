@@ -15,10 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        // Override point for customization after application launch.
-        self.window!.backgroundColor = UIColor().defaultColor()
-        self.window!.makeKeyAndVisible()
+        
+        //creo el Storyboard
+        var sb : UIStoryboard
+        
+        //creamos la interfaz grafica
+        sb = UIStoryboard(name: "Hackerbook", bundle: nil)
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.rootViewController = sb.instantiateInitialViewController()
+        window?.makeKeyAndVisible()
         return true
     }
 
