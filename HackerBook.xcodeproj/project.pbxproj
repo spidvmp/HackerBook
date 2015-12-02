@@ -17,6 +17,7 @@
 		2BA29E231C0F5C2000672472 /* Hackerbook.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BA29E221C0F5C2000672472 /* Hackerbook.storyboard */; };
 		2BA29E2A1C0F5DB500672472 /* HackerTVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA29E291C0F5DB500672472 /* HackerTVController.swift */; };
 		2BA29E2C1C0F635800672472 /* books_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = 2BA29E2B1C0F635800672472 /* books_readable.json */; };
+		2BA29E321C0F7DBA00672472 /* HttpDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA29E311C0F7DBA00672472 /* HttpDownloader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		2BA29E221C0F5C2000672472 /* Hackerbook.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Hackerbook.storyboard; path = Storyboards/Hackerbook.storyboard; sourceTree = "<group>"; };
 		2BA29E291C0F5DB500672472 /* HackerTVController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HackerTVController.swift; path = Controllers/HackerTVController.swift; sourceTree = "<group>"; };
 		2BA29E2B1C0F635800672472 /* books_readable.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = books_readable.json; sourceTree = "<group>"; };
+		2BA29E311C0F7DBA00672472 /* HttpDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpDownloader.swift; path = Utils/HttpDownloader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				2B0D0BEE1C0316B70065C968 /* AppDelegate.swift */,
 				2BA29E241C0F5CC800672472 /* Controllers */,
 				2B0D0BFE1C032BE20065C968 /* Model */,
+				2BA29E301C0F7D8C00672472 /* Utils */,
 				2B0D0BF01C0316B70065C968 /* Assets.xcassets */,
 				2BA29E2B1C0F635800672472 /* books_readable.json */,
 				2B0D0BF51C0316B70065C968 /* Info.plist */,
@@ -111,6 +114,14 @@
 				2BA29E291C0F5DB500672472 /* HackerTVController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		2BA29E301C0F7D8C00672472 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2BA29E311C0F7DBA00672472 /* HttpDownloader.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BA29E321C0F7DBA00672472 /* HttpDownloader.swift in Sources */,
 				2B0D0BFD1C0325CC0065C968 /* UIKitExtension.swift in Sources */,
 				2BA29E2A1C0F5DB500672472 /* HackerTVController.swift in Sources */,
 				2B0D0C021C032E670065C968 /* NCTLibrary.swift in Sources */,

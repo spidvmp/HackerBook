@@ -21,6 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //hay que comprobar si es la primera vez y bajar el json de internet
         downloadJSON()
+//        let def = NSUserDefaults.standardUserDefaults()
+//        if !def.boolForKey("firsTime") {
+//            print("no lo tengo. Comentada la opcion de ponerlo a true")
+//            //def.setBool(true, forKey: "firsTime")
+//            
+//        } else {
+//            //ya lo tengo
+//            print("lo tengo")
+//        }
         
         //creamos la interfaz grafica
         sb = UIStoryboard(name: "Hackerbook", bundle: nil)
