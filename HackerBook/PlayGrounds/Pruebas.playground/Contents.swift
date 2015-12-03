@@ -3,39 +3,16 @@
 import UIKit
 
 //Download
-func download_request()
-{
-    let url:NSURL = NSURL(string: url_to_request)!
-    let session = NSURLSession.sharedSession()
-    
-    let request = NSMutableURLRequest(URL: url)
-    request.HTTPMethod = "POST"
-    request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringCacheData
-    
-    let paramString = "data=Hello"
-    request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
-    
-    
-    let task = session.downloadTaskWithRequest(request) {
-        (
-        let location, let response, let error) in
-        
-        guard let _:NSURL = location, let _:NSURLResponse = response  where error == nil else {
-            print("error")
-            return
-        }
-        
-        let urlContents = try! NSString(contentsOfURL: location!, encoding: NSUTF8StringEncoding)
-        
-        guard let _:NSString = urlContents else {
-            print("error")
-            return
-        }
-        
-        print(urlContents)
-        
-    }
-    
-    task.resume()
-    
+let z = ["a":3, "b": 5]
+let y = ["a":6, "b": 8]
+let arr=[z,y]
+//let a =[{nom: "pepe", edad:34},{nom:"manolo", edad:20},{nom:"Ana Mari", edad:30}]
+//print (z)
+for each in arr {
+    print (each)
+//    if each."b" < 5 {
+//        print (each.b," menor")
+//    } else {
+//        print (each.b, " mayor")
+//    }
 }

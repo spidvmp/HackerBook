@@ -10,11 +10,17 @@ import UIKit
 
 class DownloadController: UIViewController, NSURLSessionDownloadDelegate {
     
+    /*
+    creo un modelo de datos de tipo NCTLibrary que liego se lo paso al controlador de la tabla para que saquelos datos de ahi. Lo creo por cojones para que no sea opcional y ademas ya se que model existe, aunque su contenido este vacio. Cuando salga de aqui debera tener datos, si es que notampoco deberia pasar nada, el array saldria vacio
+    */
+    var model : NCTLibrary!
+    
+    
     //defino la tarea en segundo plano y la tarea de download
     var downloadTask: NSURLSessionDownloadTask!
     var backgroundSession: NSURLSession!
     
-    var json: NSString!
+    
 
     @IBOutlet weak var progressView: UIProgressView!
     
@@ -40,7 +46,7 @@ class DownloadController: UIViewController, NSURLSessionDownloadDelegate {
             //es la primera vez, me lo tengo que bajar
             print("no lo tengo. Comentada la opcion de ponerlo a true")
             //def.setBool(true, forKey: "firsTime")
-            json = downloadJSON()
+            let json = downloadJSON()
             statusText.text="Analizando JSON"
             print (json)
 
@@ -62,10 +68,10 @@ class DownloadController: UIViewController, NSURLSessionDownloadDelegate {
             */
             
         } else {
-            //ya lo tengo
+            //ya lo tengo, leo del userdefualts y se los paso a la libreria
             print("lo tengo")
         }
-        
+
         
         
     }
@@ -74,6 +80,42 @@ class DownloadController: UIViewController, NSURLSessionDownloadDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+//    func cargarJSON(){
+//        //compruebo si ya me lo he bajado por primera vez o no y genero el modelo de un sitio o de otro y selo paso a la tabla
+//        let def = NSUserDefaults.standardUserDefaults()
+//        if !def.boolForKey("firsTime") {
+//            //es la primera vez, me lo tengo que bajar
+//            print("no lo tengo. Comentada la opcion de ponerlo a true")
+//            //def.setBool(true, forKey: "firsTime")
+//            json = downloadJSON()
+//            statusText.text="Analizando JSON"
+//            print (json)
+//            
+//            
+//            
+//            
+//            
+//            
+//            
+//            /*
+//            let backgroundSessionConfiguration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier("backgroundSession")
+//            
+//            backgroundSession = NSURLSession(configuration: backgroundSessionConfiguration, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
+//            
+//            //me bajo el json, el ! va xq como lo pongo a mano se que va y va bien
+//            let url = NSURL(string: "https://t.co/K9ziV0z3SJ")!
+//            downloadTask = backgroundSession.downloadTaskWithURL(url)
+//            downloadTask.resume()
+//            */
+//            
+//        } else {
+//            //ya lo tengo
+//            print("lo tengo")
+//        }
+//        
+//    }
     
     //MARK: - SessionDownload Delegate
     func URLSession(session: NSURLSession,
@@ -117,12 +159,24 @@ class DownloadController: UIViewController, NSURLSessionDownloadDelegate {
         statusText.text="JSON"
         progressView.setProgress(0.0, animated: true)
         let url = NSURL(string: "https://t.co/K9ziV0z3SJ")!
-        if let j =  NSData(contentsOfURL: url), let js = NSString(data: j, encoding: NSUTF8StringEncoding) {
-            progressView.setProgress(1.0, animated: true)
-            return js
+        //me bajo los datos, se los enchufo al JSONSerializartion y si todo va bien devuelvo un JSONArray
+        do {
+            if let data = NSData(contentsOfURL: url),
+                libros = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? JSONArray {
+                    //tengo un JSONArray de libros sin tratar
+                    print("Libros del JSON\n",libros)
+                    return "hola"
+            }
+        } catch {
+            print("Error al descargar el json")
         }
-        progressView.setProgress(1.0, animated: true)
-        return ""
+        
+//        if let j =  NSData(contentsOfURL: url), let js = NSString(data: j, encoding: NSUTF8StringEncoding) {
+//            progressView.setProgress(1.0, animated: true)
+//            return js
+//        }
+//        progressView.setProgress(1.0, animated: true)
+        return "adios"
     }
 
     /*

@@ -10,10 +10,10 @@ import Foundation
 
 
 class NCTLibrary {
-/*
+
     //MARK: - Properties
-    //libros en un array de NCTBook
-    private var libros: [NCTBook]
+    //voy a tener 2 arrays, uno de libros alfabeticamente y otra de tags y como contenido de cada elemento tendre un objeto NCTBook
+    private var books: [NCTBook]
     let tags: NSMutableArray
     
     
@@ -21,14 +21,14 @@ class NCTLibrary {
     
     var booksCount : Int {
         get{
-            let count: Int = self.libros.count
+            let count: Int = self.books.count
             return count
         }
     }
     
     //MARK: - init
     init(){
-        self.libros = []
+        self.books = []
         self.tags = []
     }
     
@@ -49,12 +49,12 @@ class NCTLibrary {
         var librosConTag:[NCTBook]?
         
         //me recorro toda la libreria y bisco si en el tag en el array de tags
-        for l in libros {
+        for l in books {
             let li = l as? NCTBook
             //compruebo si tiene el tag
-            if ( l.tags.contains(tag)) {
-                librosConTag?.append(li!)
-            }
+            //if ( l.tags.contains(tag)) {
+            //    librosConTag?.append(li!)
+            //}
         }
         return librosConTag
         
@@ -76,5 +76,5 @@ class NCTLibrary {
         
         return nil;
     }
-    */
+    
 }

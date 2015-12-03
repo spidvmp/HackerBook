@@ -8,6 +8,11 @@
 
 import UIKit
 
+/*
+Voy a utilizar 2 arrays, uno con los libros ordenados alfabeticamente y el otro ordenador por los tags
+El array de los libros tiene por cada elemento un libro, que es un diccionarion con el autor, imagen, pdf, tag, etc
+El arra de los tags
+*/
 
 //MARK: - Alias
 
@@ -30,6 +35,17 @@ enum JSONKeys: String {
     case tags = "tags"
     case imagen = "image_url"
     case pdf = "pdf_url"
+}
+
+//MARK: - Structs
+//Esta estructura es la del libro una vez leido del json, extraido, comprobado y con los enlaces a la imagen y al pdf que estarn en local
+//Los libros tienes por narices titulo, autor, tag, imagen y pdf. No se especifica que exista libro son tag o libro sin autor
+struct StructBook {
+    let titulo: String
+    let autores : [String]
+    let tags : [String]
+    let imagen : NSURL
+    let pdf : NSURL
 }
 
 //MARK: - Decoding
@@ -68,5 +84,5 @@ func decode(libro json:JSONDictionary) throws -> NCTBook {
     
     
     return NCTBook(titulo: titulo, autores: autores, tags: tags, urlImagen: img, urlPDF: pdf)
-    
+
 }
