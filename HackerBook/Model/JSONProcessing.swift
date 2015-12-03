@@ -41,14 +41,102 @@ enum JSONKeys: String {
 //Esta estructura es la del libro una vez leido del json, extraido, comprobado y con los enlaces a la imagen y al pdf que estarn en local
 //Los libros tienes por narices titulo, autor, tag, imagen y pdf. No se especifica que exista libro son tag o libro sin autor
 struct StructBook {
-    let titulo: String
-    let autores : [String]
-    let tags : [String]
-    let imagen : NSURL
-    let pdf : NSURL
+    let titulo: String?
+    let autores : [String]?
+    let tags : [String]?
+    let imagen : String?
+    let pdf : String?
 }
 
 //MARK: - Decoding
+
+func decodeJSONArrayToStructBookArray(books json:JSONArray) -> [StructBook] {
+    //recibo un JSONArray y devuelvo un array de libros estructurados. Este paso es despues de leer el JSON, esto procesara los datos y los devuelve estructurados
+    
+    
+    //array de libros estructurados
+    var result = [StructBook]()
+    
+    //me recorro el array del json y analizo libro por libro
+    do {
+        
+        for dict in json {
+            print("Analizando ",dict )
+            //convierto el diccionario que contienen los datos del libro y devuelvo un StructBook
+            let l = try decodeJSONDictionaryToStructBook (libro: dict)
+            //añado la estructura del libro a los resultados
+            result.append(l)
+            
+        }
+        
+    } catch {
+        
+        print("Cagada mortal en decodeJSONArrayToStructBookArray")
+    }
+    
+    print("\n\n Array de SturctBook", result)
+    
+    return result
+    
+}
+
+func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBook {
+    
+    /*
+    recibo un elemento del array de libros que es un diccionario. He de sacar toda la indformacion y comprobar que es correcta y devuelvo y elemento StructBook. Aqui tambien cambio el nombre del pdf y de la imagen del libro para tener la relacion interna, ya que me bajare de interner esa imagen y ese pdf para guardarlo en local
+    */
+    
+    
+    //comprbamos los valores. Titulo es un string no compruebo nada
+    
+    //comprbamos que en autores hay un array
+    
+    
+    //comprobamos la imagen
+    guard let imageUrl = l[JSONKeys.imagen.rawValue] as? String
+        //imageName = imageUrl.componentsSeparatedByString("/")
+        //imagen = imageName[imageName.count]
+    //imagen = UIImage(named: imageUrl)
+        else {
+            print("error con la imagen")
+            throw JSONProcessingError.ResourcePointedByURLNotReachable
+    }
+    //tengo la imagenUrl, necesito solo el nombre, lo troceo separado por /
+    let imagenRip = imageUrl.componentsSeparatedByString("/")
+    let imagen :String? = imagenRip[imagenRip.count - 1]
+
+    
+    
+    
+    //saco datos que no hay que comprobar
+    let titulo = l[JSONKeys.titulo.rawValue] as? String
+    let autores = l[JSONKeys.autores.rawValue] as? [String]
+    let tags = l[JSONKeys.tags.rawValue] as? [String]
+
+    let pdf = l[JSONKeys.pdf.rawValue] as? String
+    
+    return StructBook (titulo: titulo,
+        autores: autores,
+        tags: tags,
+        imagen: imagen,
+        pdf: pdf)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 func decode(libro json:JSONDictionary) throws -> NCTBook {
     
     //comprobar que los valores que vienen son validos

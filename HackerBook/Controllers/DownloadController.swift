@@ -32,7 +32,7 @@ class DownloadController: UIViewController, NSURLSessionDownloadDelegate {
         // Do any additional setup after loading the view.
         
         //defino la progressview, si tiene los datos como va todo en local se supone que ira muy rapido
-        progressView.setProgress(0.0, animated: false)
+        //progressView.setProgress(0.0, animated: false)
         //progressView.progressTintColor = UIColor.defaultColorHacker()
     }
     
@@ -46,9 +46,13 @@ class DownloadController: UIViewController, NSURLSessionDownloadDelegate {
             //es la primera vez, me lo tengo que bajar
             print("no lo tengo. Comentada la opcion de ponerlo a true")
             //def.setBool(true, forKey: "firsTime")
-            let json = downloadJSON()
-            statusText.text="Analizando JSON"
-            print (json)
+            if let arrayLibros = downloadJSON() {
+                statusText.text="Analizando JSON"
+                print (arrayLibros)
+                //aqui deberria tener los datos correctamente, deberia bajar las fotos y generar la libreria
+                
+                
+            }
 
             
             
@@ -154,8 +158,14 @@ class DownloadController: UIViewController, NSURLSessionDownloadDelegate {
     }
     
     
-    func downloadJSON() -> NSString {
+    func downloadJSON() -> [StructBook]? {
         //me bajo el json de forma sincrona, el ! va xq como lo pongo a mano se que va y va bien
+        
+        //necesito un array de los libros structurados, que podria dar error si no hay nada
+        var result : [StructBook]? = nil
+        
+        
+        
         statusText.text="JSON"
         progressView.setProgress(0.0, animated: true)
         let url = NSURL(string: "https://t.co/K9ziV0z3SJ")!
@@ -163,9 +173,10 @@ class DownloadController: UIViewController, NSURLSessionDownloadDelegate {
         do {
             if let data = NSData(contentsOfURL: url),
                 libros = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? JSONArray {
-                    //tengo un JSONArray de libros sin tratar
-                    print("Libros del JSON\n",libros)
-                    return "hola"
+                    //tengo un JSONArray de libros sin tratar, me devuelve un array de StrucBook
+                    print("Libros del JSON\n",libros,"\n-------------------------------")
+                    result = decodeJSONArrayToStructBookArray(books: libros)
+
             }
         } catch {
             print("Error al descargar el json")
@@ -176,7 +187,7 @@ class DownloadController: UIViewController, NSURLSessionDownloadDelegate {
 //            return js
 //        }
 //        progressView.setProgress(1.0, animated: true)
-        return "adios"
+        return result
     }
 
     /*
