@@ -175,7 +175,10 @@ class DownloadController: UIViewController, NSURLSessionDownloadDelegate {
                 libros = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? JSONArray {
                     //tengo un JSONArray de libros sin tratar, me devuelve un array de StrucBook
                     print("Libros del JSON\n",libros,"\n-------------------------------")
-                    result = decodeJSONArrayToStructBookArray(books: libros)
+                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        result = decodeJSONArrayToStructBookArray(books: libros)
+                    })
 
             }
         } catch {

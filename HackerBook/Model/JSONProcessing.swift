@@ -42,8 +42,8 @@ enum JSONKeys: String {
 //Los libros tienes por narices titulo, autor, tag, imagen y pdf. No se especifica que exista libro son tag o libro sin autor
 struct StructBook {
     let titulo: String?
-    let autores : [String]?
-    let tags : [String]?
+    let autores : String?
+    let tags : String?
     let imagen : String?
     let pdf : String?
 }
@@ -74,8 +74,6 @@ func decodeJSONArrayToStructBookArray(books json:JSONArray) -> [StructBook] {
         print("Cagada mortal en decodeJSONArrayToStructBookArray")
     }
     
-    print("\n\n Array de SturctBook", result)
-    
     return result
     
 }
@@ -85,11 +83,6 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
     /*
     recibo un elemento del array de libros que es un diccionario. He de sacar toda la indformacion y comprobar que es correcta y devuelvo y elemento StructBook. Aqui tambien cambio el nombre del pdf y de la imagen del libro para tener la relacion interna, ya que me bajare de interner esa imagen y ese pdf para guardarlo en local
     */
-    
-    
-    //comprbamos los valores. Titulo es un string no compruebo nada
-    
-    //comprbamos que en autores hay un array
     
     
     //comprobamos la imagen
@@ -104,16 +97,25 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
     //tengo la imagenUrl, necesito solo el nombre, lo troceo separado por /
     let imagenRip = imageUrl.componentsSeparatedByString("/")
     let imagen :String? = imagenRip[imagenRip.count - 1]
+    
+    //troceo el pdf para quedarme solo con el nombre del pdf
+    guard let pdfFile = l[JSONKeys.pdf.rawValue] as? String else {
+        print("error con el pdf")
+        throw JSONProcessingError.ResourcePointedByURLNotReachable
+    }
+    //tengo el pdf, lo troceo separado por /
+    let pdfRip = pdfFile.componentsSeparatedByString("/")
+    let pdf : String? = pdfRip[pdfRip.count - 1]
 
     
     
     
     //saco datos que no hay que comprobar
     let titulo = l[JSONKeys.titulo.rawValue] as? String
-    let autores = l[JSONKeys.autores.rawValue] as? [String]
-    let tags = l[JSONKeys.tags.rawValue] as? [String]
-
-    let pdf = l[JSONKeys.pdf.rawValue] as? String
+    let autores = l[JSONKeys.autores.rawValue] as? String
+    let tags = l[JSONKeys.tags.rawValue] as? String
+    
+    //let pdf = l[JSONKeys.pdf.rawValue] as? String
     
     return StructBook (titulo: titulo,
         autores: autores,
@@ -124,6 +126,34 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
 
 
 
+//MARK: - Inicializadores de conveniencia de libroo y libreria 
+extension NCTBook {
+    
+    //inicializador de conveniencia de libros, recibe un struct y lo convierte a objeto NCTBook para que se guarde en el array de libros
+    convenience init (structBook l:StructBook) {
+        
+        //aqui tengo los datos a tal y como se van a guardar
+        
+        self.init(titulo : l.titulo,
+            autores: l.autores,
+            tags: l.tags,
+            urlImagen: l.imagen,
+            urlPDF: l.pdf
+            
+            )
+    }
+}
+
+
+//extension NCTLibrary {
+//    
+//    //inicializador de conveniencia, recive un array de structBook y crea el objeto libro, que lo guarda en el array de libros
+//    convenience init(libros l:[StructBook]){
+//        //me recorro el
+//        
+//        
+//    }
+//}
 
 
 
@@ -135,8 +165,7 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
 
 
 
-
-
+/*
 func decode(libro json:JSONDictionary) throws -> NCTBook {
     
     //comprobar que los valores que vienen son validos
@@ -174,3 +203,4 @@ func decode(libro json:JSONDictionary) throws -> NCTBook {
     return NCTBook(titulo: titulo, autores: autores, tags: tags, urlImagen: img, urlPDF: pdf)
 
 }
+*/

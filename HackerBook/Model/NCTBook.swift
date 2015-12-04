@@ -14,16 +14,16 @@ class NCTBook {
     //propiedades del libro
     //MARK: - Properties
     let titulo : String?
-    let autores : NSMutableArray
-    let tags: NSMutableArray
-    let urlImagen : NSURL
-    let urlPDF : NSURL
+    let autores : String?
+    let tags : String?
+    let urlImagen : String?
+    let urlPDF : String?
     let favorite : Bool
     
     //inicializador designado
     //MARK: - Init
     //favorito por defecto es falso
-    init(titulo: String?, autores:NSMutableArray, tags: NSMutableArray, urlImagen: NSURL, urlPDF: NSURL, favorite: Bool = false){
+    init(titulo: String? , autores:String? , tags:String?, urlImagen: String?, urlPDF: String?, favorite: Bool = false){
         
         self.titulo = titulo
         self.autores = autores
