@@ -42,8 +42,8 @@ enum JSONKeys: String {
 //Los libros tienes por narices titulo, autor, tag, imagen y pdf. No se especifica que exista libro son tag o libro sin autor
 struct StructBook {
     let titulo: String?
-    let autores : String?
-    let tags : String?
+    let autores : [String]?
+    let tags : [String]?
     let imagen : String?
     let pdf : String?
 }
@@ -57,11 +57,11 @@ func decodeJSONArrayToStructBookArray(books json:JSONArray) -> [StructBook] {
     //array de libros estructurados
     var result = [StructBook]()
     
-    //me recorro el array del json y analizo libro por libro
+    //me recorro el array del json y analizo los datos recibidos libro por libro
     do {
         
         for dict in json {
-            print("Analizando ",dict )
+            //print("Analizando ",dict )
             //convierto el diccionario que contienen los datos del libro y devuelvo un StructBook
             let l = try decodeJSONDictionaryToStructBook (libro: dict)
             //añado la estructura del libro a los resultados
@@ -83,13 +83,35 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
     /*
     recibo un elemento del array de libros que es un diccionario. He de sacar toda la indformacion y comprobar que es correcta y devuelvo y elemento StructBook. Aqui tambien cambio el nombre del pdf y de la imagen del libro para tener la relacion interna, ya que me bajare de interner esa imagen y ese pdf para guardarlo en local
     */
+    let filemgr = NSFileManager.defaultManager()
+    let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
     
+    let docsDir = dirPaths[0]
+
+    //saco datos que no hay que comprobar
+    let titulo = l[JSONKeys.titulo.rawValue] as? String
     
+    //los autores me vienen en un string separado por , lo transformo a array y limpio los espacion anterior y posterior si los hubiera
+    guard let a = l[JSONKeys.autores.rawValue] as? String,
+        autores:[String] = a.componentsSeparatedByString(",").map({$0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())})
+        else {
+            print("Error al procesar autores")
+            throw JSONProcessingError.ResourcePointedByURLNotReachable
+    }
+    
+    //los tags me vienen en un string separado por , lo transformo como autores
+    guard let t = l[JSONKeys.tags.rawValue] as? String,
+        tags:[String] = t.componentsSeparatedByString(",").map({$0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())})
+        else {
+            print("error al procesar los tags")
+            throw JSONProcessingError.ResourcePointedByURLNotReachable
+    }
+
     //comprobamos la imagen
     guard let imageUrl = l[JSONKeys.imagen.rawValue] as? String
         //imageName = imageUrl.componentsSeparatedByString("/")
         //imagen = imageName[imageName.count]
-    //imagen = UIImage(named: imageUrl)
+        //imagen = UIImage(named: imageUrl)
         else {
             print("error con la imagen")
             throw JSONProcessingError.ResourcePointedByURLNotReachable
@@ -99,23 +121,32 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
     let imagen :String? = imagenRip[imagenRip.count - 1]
     
     //troceo el pdf para quedarme solo con el nombre del pdf
-    guard let pdfFile = l[JSONKeys.pdf.rawValue] as? String else {
+    guard let pdfUrl = l[JSONKeys.pdf.rawValue] as? String else {
         print("error con el pdf")
         throw JSONProcessingError.ResourcePointedByURLNotReachable
     }
     //tengo el pdf, lo troceo separado por /
-    let pdfRip = pdfFile.componentsSeparatedByString("/")
+    let pdfRip = pdfUrl.componentsSeparatedByString("/")
     let pdf : String? = pdfRip[pdfRip.count - 1]
-
     
+    //aqui tengo el dato completo de lo que me tengo que bajar, asi que es aqui donde me lo bajo
     
+    print("ESTA COMENTADO bajar la imagen y pdf ",pdfUrl, imageUrl)
+    /*
+    let iurl = NSURL(string: imageUrl)
+    let imgdata = NSData(contentsOfURL: iurl!)
+    let imgPath = docsDir.stringByAppendingString("/info/img/").stringByAppendingString(imagen!)
     
-    //saco datos que no hay que comprobar
-    let titulo = l[JSONKeys.titulo.rawValue] as? String
-    let autores = l[JSONKeys.autores.rawValue] as? String
-    let tags = l[JSONKeys.tags.rawValue] as? String
+    imgdata?.writeToFile(imgPath, atomically: true)
     
-    //let pdf = l[JSONKeys.pdf.rawValue] as? String
+    //bajo el pdf
+    let purl = NSURL(string: pdfUrl)
+    let pdfdata = NSData(contentsOfURL: purl!)
+    let pdfPath = docsDir.stringByAppendingString("/info/pdf/").stringByAppendingString(pdf!)
+    
+    pdfdata?.writeToFile(pdfPath, atomically: true)
+    */
+    
     
     return StructBook (titulo: titulo,
         autores: autores,

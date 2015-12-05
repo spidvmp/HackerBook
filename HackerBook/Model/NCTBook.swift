@@ -14,8 +14,8 @@ class NCTBook {
     //propiedades del libro
     //MARK: - Properties
     let titulo : String?
-    let autores : String?
-    let tags : String?
+    let autores : [String]?
+    let tags : [String]?
     let urlImagen : String?
     let urlPDF : String?
     let favorite : Bool
@@ -23,7 +23,7 @@ class NCTBook {
     //inicializador designado
     //MARK: - Init
     //favorito por defecto es falso
-    init(titulo: String? , autores:String? , tags:String?, urlImagen: String?, urlPDF: String?, favorite: Bool = false){
+    init(titulo: String? , autores:[String]? , tags:[String]?, urlImagen: String?, urlPDF: String?, favorite: Bool = false){
         
         self.titulo = titulo
         self.autores = autores

@@ -44,6 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
             
             let docsDir = dirPaths[0]
+            //me genero el nombre del fichero de datos para grabar
+            let jsonFile = docsDir.stringByAppendingString("/info/json.data")
             let img = docsDir.stringByAppendingString("/info/img")
             do {
                 try filemgr.createDirectoryAtPath(img, withIntermediateDirectories: true, attributes: nil)
@@ -57,19 +59,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print(error.localizedDescription);
             }
             
-            //crear directorio
             
             
-            //es la primera vez, me lo tengo que bajar
+            
+            //es la primera vez, me tengo que bajar todo y tratarlo
+            //dowloadJSON se baja el JSOn trata los datos, se baja las imagenes y pdf y devuelve un array de SrtuctBook
             if let arrayLibros = downloadJSON() {
-                //aqui tengo un array de StructBook, se supone que por algunlado se ha bajado las imagenes ylos pdf y se han tratado los paths para
+                //aqui tengo un array de StructBook, se supone que por algun lado se ha bajado las imagenes ylos pdf y se han tratado los paths para
                 //que se lean en local. Se guardan en data/json data/pdfs data/imgs y el nombre que tuvieran en su momento
+                //ahora voy a generar un array de NCTBook y guardarlo en un NSData. Cuando arranque NC¡TLibray leera ese NSData. No le importara si es la primera vez o ya lleva 100 años creado
 
-                print (arrayLibros)
+                print ("ArrayLibros-----------------\n",arrayLibros)
+                
+                let joined = arrayLibros
+                
+                arrayLibros.joinWithSeparator("\n").writeToFile(jsonFile, automatically:true)
                 
                 
-
-                //[data writeToFile:dataPath atomically:YES];
+                /*
+                let librosData = NSKeyedArchiver.archivedDataWithRootObject((arrayLibros as? AnyObject)!)
+                
+                if NSKeyedArchiver.archiveRootObject(librosData, toFile: jsonFile) {
+                    print ("grabado")
+                    
+                    guard let libritos = NSKeyedUnarchiver.unarchiveObjectWithFile(jsonFile) as? [StructBook] else {
+                        return
+                    }
+                } else {
+                    print("No grabado")
+                }
+*/
+                //[arrayLibros writeToFile:jsonFile atomically:YES];
+            
                 
             }
             
@@ -85,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func downloadJSON() -> [StructBook]? {
-        //me bajo el json de forma sincrona, el ! va xq como lo pongo a mano se que va y va bien
+        //me bajo el json de forma sincrona
         
         //necesito un array de los libros structurados, que podria dar error si no hay nada
         var result : [StructBook]? = nil
@@ -96,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let data = NSData(contentsOfURL: url),
                 libros = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? JSONArray {
                     //tengo un JSONArray de libros sin tratar, me devuelve un array de StrucBook
-                    print("Libros del JSON\n",libros,"\n-------------------------------")
+                    //print("Libros del JSON\n",libros,"\n-------------------------------")
                     
                     //dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         result = decodeJSONArrayToStructBookArray(books: libros)
