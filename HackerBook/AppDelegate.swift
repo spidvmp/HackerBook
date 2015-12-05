@@ -71,24 +71,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 print ("ArrayLibros-----------------\n",arrayLibros)
                 
-                let joined = arrayLibros
+                //let joined = arrayLibros
                 
-                arrayLibros.joinWithSeparator("\n").writeToFile(jsonFile, automatically:true)
+                //arrayLibros.joinWithSeparator("\n").writeToFile(jsonFile, automatically:true)
                 
                 
-                /*
-                let librosData = NSKeyedArchiver.archivedDataWithRootObject((arrayLibros as? AnyObject)!)
                 
-                if NSKeyedArchiver.archiveRootObject(librosData, toFile: jsonFile) {
+                let zz = NSKeyedArchiver.archivedDataWithRootObject(arrayLibros)
+                
+                if NSKeyedArchiver.archiveRootObject(arrayLibros, toFile: jsonFile) {
                     print ("grabado")
                     
-                    guard let libritos = NSKeyedUnarchiver.unarchiveObjectWithFile(jsonFile) as? [StructBook] else {
+                    guard let libritos = NSKeyedUnarchiver.unarchiveObjectWithFile(jsonFile) as? [NCTBook] else {
                         return
                     }
                 } else {
                     print("No grabado")
                 }
-*/
+
                 //[arrayLibros writeToFile:jsonFile atomically:YES];
             
                 
@@ -104,36 +104,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    
-    func downloadJSON() -> [StructBook]? {
+
+    //func downloadJSON() -> [StructBook]? {
+    func downloadJSON() -> [NCTBook]? {
         //me bajo el json de forma sincrona
         
         //necesito un array de los libros structurados, que podria dar error si no hay nada
-        var result : [StructBook]? = nil
+        var resultStructBooks : [StructBook]? = nil
+        var resultBooksArray: [NCTBook]? = nil
 
         let url = NSURL(string: "https://t.co/K9ziV0z3SJ")!
         //me bajo los datos, se los enchufo al JSONSerializartion y si todo va bien devuelvo un JSONArray
         do {
             if let data = NSData(contentsOfURL: url),
                 libros = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? JSONArray {
-                    //tengo un JSONArray de libros sin tratar, me devuelve un array de StrucBook
-                    //print("Libros del JSON\n",libros,"\n-------------------------------")
-                    
+                    //tengo un JSONArray de libros sin tratar, me devuelve un array de StructBook
+                  
                     //dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        result = decodeJSONArrayToStructBookArray(books: libros)
+                        resultStructBooks = decodeJSONArrayToStructBookArray(books: libros)
                     //})
+                    
+                    //ahora transformo el array de Struct en array de NCTBook
+                    resultBooksArray = decodeStructBooksToNCTBooksArray(books: resultStructBooks!)
                     
             }
         } catch {
             print("Error al descargar el json")
         }
-        
-        //        if let j =  NSData(contentsOfURL: url), let js = NSString(data: j, encoding: NSUTF8StringEncoding) {
-        //            progressView.setProgress(1.0, animated: true)
-        //            return js
-        //        }
-        //        progressView.setProgress(1.0, animated: true)
-        return result
+
+        return resultBooksArray
     }
 
     func applicationWillResignActive(application: UIApplication) {

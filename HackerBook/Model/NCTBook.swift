@@ -18,7 +18,7 @@ class NCTBook {
     let tags : [String]?
     let urlImagen : String?
     let urlPDF : String?
-    let favorite : Bool
+    let favorite : Bool?
     
     //inicializador designado
     //MARK: - Init
@@ -31,6 +31,27 @@ class NCTBook {
         self.urlImagen = urlImagen
         self.urlPDF = urlPDF
         self.favorite = favorite
+    }
+    
+    //codificadores para grabarlo como nsdata
+    
+    init ( coder aDecoder: NSCoder!){
+        self.titulo = aDecoder.decodeObjectForKey("titulo") as? String
+        self.autores = aDecoder.decodeObjectForKey("autores") as? [String]
+        self.tags = aDecoder.decodeObjectForKey("tags") as? [String]
+        self.urlImagen = aDecoder.decodeObjectForKey("urlImagen") as? String
+        self.urlPDF = aDecoder.decodeObjectForKey("urlPDF") as? String
+        self.favorite = aDecoder.decodeObjectForKey("favorite") as? Bool
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder!){
+        aCoder.encodeObject(titulo, forKey:"titulo")
+        aCoder.encodeObject(autores, forKey:"autores")
+        aCoder.encodeObject(tags, forKey:"tags")
+        aCoder.encodeObject(urlImagen, forKey:"urlImagen")
+        aCoder.encodeObject(urlPDF, forKey:"urlPDF")
+        aCoder.encodeObject(favorite, forKey:"favorite")
+        
     }
     
     

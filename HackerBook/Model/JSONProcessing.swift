@@ -156,6 +156,16 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
 }
 
 
+func decodeStructBooksToNCTBooksArray(books l:[StructBook]) -> [NCTBook]?{
+    //recibo el array de structbook y genero el array de NCTBook
+    
+    let res = l.map({NCTBook.init(structBook: $0)})
+    
+    return res
+    
+    
+}
+
 
 //MARK: - Inicializadores de conveniencia de libroo y libreria 
 extension NCTBook {
