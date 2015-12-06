@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //hay que comprobar si es la primera vez y bajar el json de internet
         checkDownloadedJSON()
+        
+        //cuando salimos de aqui, si es la primera vez se ha cargado todo, si no no ha hecho nada
+        //El modelo esta grabado en ./info/model.data
 
         
         //creamos la interfaz grafica
@@ -45,7 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let docsDir = dirPaths[0]
             //me genero el nombre del fichero de datos para grabar
-            let jsonFile = docsDir.stringByAppendingString("/info/json.data")
             let img = docsDir.stringByAppendingString("/info/img")
             do {
                 try filemgr.createDirectoryAtPath(img, withIntermediateDirectories: true, attributes: nil)
@@ -68,67 +70,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 //aqui tengo un array de StructBook, se supone que por algun lado se ha bajado las imagenes ylos pdf y se han tratado los paths para
                 //que se lean en local. Se guardan en data/json data/pdfs data/imgs y el nombre que tuvieran en su momento
                 //ahora voy a generar un array de NCTBook y guardarlo en un NSData. Cuando arranque NC¡TLibray leera ese NSData. No le importara si es la primera vez o ya lleva 100 años creado
-
-                print ("ArrayLibros-----------------\n",arrayLibros)
-                
+             
                 saveModel(datos: arrayLibros)
-                
-                let z = loadModel()
-                
-                /*
-                //con struct
-                do {
-                let data = try NSJSONSerialization.JSONObjectWithData(arrayLibros, options:[]) as? [String:AnyObject]
-                } catch {
-                    print ("dd")
-                }
-                */
-                
-                //esto solo con clases, no con estructuras
-                //let zz = NSKeyedArchiver.archivedDataWithRootObject(arrayLibros)
 
-
- /*
-                if NSKeyedArchiver.archiveRootObject(arrayLibros, toFile: jsonFile) {
-                    print ("grabado")
-                
-//                    //lo saco de userder
-//                    let cc = def.objectForKey("fichero")
-//                    if ( zz === cc ) {
-//                        print ("iguales")
-//                    }
-//                    
-//                    guard let libri = NSKeyedUnarchiver.unarchiveObjectWithData(zz) as? [NCTBook] else {
-//                        print("tampoco los datos")
-//                        return
-//                    }
-//                    
-////                    guard let libuser = NSKeyedUnarchiver.unarchiveObjectWithData(cc) as? [NCTBook] else {
-////                        return
-////                    }
-//                    
-//                    guard let libritos2 = NSKeyedUnarchiver.unarchiveObjectWithFile(jsonFile) else {
-//                        return
-//                    }
-
-
-                } else {
-                    print("No grabado")
-                }
-
-            
-            if let libritos = NSKeyedUnarchiver.unarchiveObjectWithFile(jsonFile) as? [NCTBook] {
-                //else {
-                return
-            }
-                //[arrayLibros writeToFile:jsonFile atomically:YES];
-
-*/
             }
 
             
             
-            print("no lo tengo. Comentada la opcion de ponerlo a true")
+            print("no lo tengo. Comentada la opcion de ponerlo a true para no volver a leer")
             //def.setBool(true, forKey: "firsTime")
             
         }

@@ -6,6 +6,42 @@
 //  Copyright © 2015 Nicatec Software. All rights reserved.
 //
 import Foundation
+
+
+//MARK: - Graba y lee el modelo
+func saveModel(datos d:[NCTBook]){
+    print("save [1].favorite=",d[1].favorite)
+    //let filemgr = NSFileManager.defaultManager()
+    let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    
+    let docsDir = dirPaths[0]
+    //me genero el nombre del fichero de datos para grabar
+    let jsonFile = docsDir.stringByAppendingString("/info/model.data")
+    if NSKeyedArchiver.archiveRootObject(d, toFile: jsonFile) {
+        print ("grabado")
+    } else {
+        print("Error al grabar")
+    }
+    
+}
+
+
+func loadModel() -> [NCTBook]{
+    //let filemgr = NSFileManager.defaultManager()
+    let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    
+    let docsDir = dirPaths[0]
+    //me genero el nombre del fichero de datos para grabar
+    let jsonFile = docsDir.stringByAppendingString("/info/model.data")
+    if let libritos = NSKeyedUnarchiver.unarchiveObjectWithFile(jsonFile) as? [NCTBook] {
+        //else {
+        return libritos
+    }
+    return []
+}
+
+
+
 /*
 public struct FileSave {
     public static func saveData(fileData:NSData, directory:NSSearchPathDirectory, path:String, subdirectory:String?) -> Bool

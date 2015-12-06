@@ -18,7 +18,7 @@ class NCTBook: NSObject, NSCoding {
     let tags : [String]?
     let urlImagen : String?
     let urlPDF : String?
-    let favorite : Bool
+    var favorite : Bool
     
     //inicializador designado
     //MARK: - Init
@@ -58,7 +58,7 @@ class NCTBook: NSObject, NSCoding {
         aCoder.encodeObject(tags, forKey:"tags")
         aCoder.encodeObject(urlImagen, forKey:"urlImagen")
         aCoder.encodeObject(urlPDF, forKey:"urlPDF")
-        aCoder.encodeBool(favorite, forKey: "favorie")
+        aCoder.encodeBool(favorite, forKey: "favorite")
         
     }
     
