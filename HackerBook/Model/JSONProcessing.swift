@@ -185,7 +185,36 @@ extension NCTBook {
     }
 }
 
+//MARK: - Graba y lee el modelo
+func saveModel(datos d:[NCTBook]){
+    let filemgr = NSFileManager.defaultManager()
+    let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    
+    let docsDir = dirPaths[0]
+    //me genero el nombre del fichero de datos para grabar
+    let jsonFile = docsDir.stringByAppendingString("/info/json.data")
+    if NSKeyedArchiver.archiveRootObject(d, toFile: jsonFile) {
+        print ("grabado")
+    } else {
+        print("Error al grabar")
+    }
+    
+}
 
+
+func loadModel() -> [NCTBook]{
+    let filemgr = NSFileManager.defaultManager()
+    let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    
+    let docsDir = dirPaths[0]
+    //me genero el nombre del fichero de datos para grabar
+    let jsonFile = docsDir.stringByAppendingString("/info/json.data")
+    if let libritos = NSKeyedUnarchiver.unarchiveObjectWithFile(jsonFile) as? [NCTBook] {
+        //else {
+        return libritos
+    }
+    return []
+}
 //extension NCTLibrary {
 //    
 //    //inicializador de conveniencia, recive un array de structBook y crea el objeto libro, que lo guarda en el array de libros

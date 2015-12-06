@@ -71,29 +71,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 print ("ArrayLibros-----------------\n",arrayLibros)
                 
-                //let joined = arrayLibros
+                saveModel(datos: arrayLibros)
                 
-                //arrayLibros.joinWithSeparator("\n").writeToFile(jsonFile, automatically:true)
+                let z = loadModel()
                 
+                /*
+                //con struct
+                do {
+                let data = try NSJSONSerialization.JSONObjectWithData(arrayLibros, options:[]) as? [String:AnyObject]
+                } catch {
+                    print ("dd")
+                }
+                */
                 
-                
-                let zz = NSKeyedArchiver.archivedDataWithRootObject(arrayLibros)
-                
+                //esto solo con clases, no con estructuras
+                //let zz = NSKeyedArchiver.archivedDataWithRootObject(arrayLibros)
+
+
+ /*
                 if NSKeyedArchiver.archiveRootObject(arrayLibros, toFile: jsonFile) {
                     print ("grabado")
-                    
-                    guard let libritos = NSKeyedUnarchiver.unarchiveObjectWithFile(jsonFile) as? [NCTBook] else {
-                        return
-                    }
+                
+//                    //lo saco de userder
+//                    let cc = def.objectForKey("fichero")
+//                    if ( zz === cc ) {
+//                        print ("iguales")
+//                    }
+//                    
+//                    guard let libri = NSKeyedUnarchiver.unarchiveObjectWithData(zz) as? [NCTBook] else {
+//                        print("tampoco los datos")
+//                        return
+//                    }
+//                    
+////                    guard let libuser = NSKeyedUnarchiver.unarchiveObjectWithData(cc) as? [NCTBook] else {
+////                        return
+////                    }
+//                    
+//                    guard let libritos2 = NSKeyedUnarchiver.unarchiveObjectWithFile(jsonFile) else {
+//                        return
+//                    }
+
+
                 } else {
                     print("No grabado")
                 }
 
-                //[arrayLibros writeToFile:jsonFile atomically:YES];
             
-                
+            if let libritos = NSKeyedUnarchiver.unarchiveObjectWithFile(jsonFile) as? [NCTBook] {
+                //else {
+                return
             }
-            
+                //[arrayLibros writeToFile:jsonFile atomically:YES];
+
+*/
+            }
+
             
             
             print("no lo tengo. Comentada la opcion de ponerlo a true")
@@ -131,7 +163,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print("Error al descargar el json")
         }
-
+        //return resultStructBooks
         return resultBooksArray
     }
 

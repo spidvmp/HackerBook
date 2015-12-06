@@ -9,7 +9,7 @@
 import Foundation
 
 
-class NCTBook {
+class NCTBook: NSObject, NSCoding {
     
     //propiedades del libro
     //MARK: - Properties
@@ -18,7 +18,7 @@ class NCTBook {
     let tags : [String]?
     let urlImagen : String?
     let urlPDF : String?
-    let favorite : Bool?
+    let favorite : Bool
     
     //inicializador designado
     //MARK: - Init
@@ -35,22 +35,30 @@ class NCTBook {
     
     //codificadores para grabarlo como nsdata
     
-    init ( coder aDecoder: NSCoder!){
-        self.titulo = aDecoder.decodeObjectForKey("titulo") as? String
-        self.autores = aDecoder.decodeObjectForKey("autores") as? [String]
-        self.tags = aDecoder.decodeObjectForKey("tags") as? [String]
-        self.urlImagen = aDecoder.decodeObjectForKey("urlImagen") as? String
-        self.urlPDF = aDecoder.decodeObjectForKey("urlPDF") as? String
-        self.favorite = aDecoder.decodeObjectForKey("favorite") as? Bool
+    required convenience init ( coder aDecoder: NSCoder){
+        let titulo = aDecoder.decodeObjectForKey("titulo") as! String
+        let autores = aDecoder.decodeObjectForKey("autores") as! [String]
+        let tags = aDecoder.decodeObjectForKey("tags") as! [String]
+        let urlImagen = aDecoder.decodeObjectForKey("urlImagen") as! String
+        let urlPDF = aDecoder.decodeObjectForKey("urlPDF") as! String
+        let favorite = aDecoder.decodeBoolForKey("favorite")
+        
+        self.init(titulo: titulo, autores: autores, tags: tags, urlImagen: urlImagen, urlPDF: urlPDF, favorite: favorite)
+//        self.titulo = aDecoder.decodeObjectForKey("titulo") as? String
+//        self.autores = aDecoder.decodeObjectForKey("autores") as? [String]
+//        self.tags = aDecoder.decodeObjectForKey("tags") as? [String]
+//        self.urlImagen = aDecoder.decodeObjectForKey("urlImagen") as? String
+//        self.urlPDF = aDecoder.decodeObjectForKey("urlPDF") as? String
+//        self.favorite = aDecoder.decodeBoolForKey("favorite")
     }
     
-    func encodeWithCoder(aCoder: NSCoder!){
+    func encodeWithCoder(aCoder: NSCoder){
         aCoder.encodeObject(titulo, forKey:"titulo")
         aCoder.encodeObject(autores, forKey:"autores")
         aCoder.encodeObject(tags, forKey:"tags")
         aCoder.encodeObject(urlImagen, forKey:"urlImagen")
         aCoder.encodeObject(urlPDF, forKey:"urlPDF")
-        aCoder.encodeObject(favorite, forKey:"favorite")
+        aCoder.encodeBool(favorite, forKey: "favorie")
         
     }
     
