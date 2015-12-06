@@ -10,7 +10,6 @@ import Foundation
 
 //MARK: - Graba y lee el modelo
 func saveModel(datos d:[NCTBook]){
-    print("save [1].favorite=",d[1].favorite)
     //let filemgr = NSFileManager.defaultManager()
     let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
     
@@ -18,7 +17,7 @@ func saveModel(datos d:[NCTBook]){
     //me genero el nombre del fichero de datos para grabar
     let jsonFile = docsDir.stringByAppendingString("/info/model.data")
     if NSKeyedArchiver.archiveRootObject(d, toFile: jsonFile) {
-        print ("grabado")
+        //print ("grabado")
     } else {
         print("Error al grabar")
     }

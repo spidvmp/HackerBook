@@ -9,6 +9,8 @@
 import UIKit
 
 class HackerTVController: UITableViewController {
+    
+    var model : NCTLibrary!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,8 @@ class HackerTVController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         print("estoy en la tabla")
+        //cargo el modelo
+        model = NCTLibrary()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,24 +33,35 @@ class HackerTVController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+
+        return model.booksCount
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        var cell = tableView.dequeueReusableCellWithIdentifier("Libros")
+        
+        if  cell == nil {
+            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "Libros")
+        }
+        
+        //obtenemos el libro
+        let libro = model.bookAtIndex(index: indexPath.row)
 
-        // Configure the cell...
-
-        return cell
+        
+        
+        cell?.textLabel?.text = libro?.titulo
+        cell?.detailTextLabel?.text = libro?.autores?.joinWithSeparator(", ")
+        //cell?.imageView?.image =
+        
+        return cell!
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
