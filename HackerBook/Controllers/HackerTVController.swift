@@ -58,7 +58,11 @@ class HackerTVController: UITableViewController {
         cell?.textLabel?.text = libro.titulo
         cell?.detailTextLabel?.text = libro.autores?.joinWithSeparator(", ")
        
-        let imagen = UIImage(contentsOfFile: libro.imagenPath!)
+        let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        
+        let docsDir = dirPaths[0]
+        
+        let imagen = UIImage(contentsOfFile: docsDir.stringByAppendingString(libro.imagenPath!))
         cell?.imageView?.image = imagen
         
         return cell!

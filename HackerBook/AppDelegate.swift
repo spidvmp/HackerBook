@@ -45,24 +45,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         if !def.boolForKey("firsTime") {
-            //creo los direcorios que voy a necesitar. creo info info/img info/pdf. En info guardo el json y los pdf y las imagenes en cada uno de los otors
+            //creo los direcorios que voy a necesitar. creo info . En info guardo el json y un directorio por cada libro, donde guardo la imagen y el pdf, asi evito nombres repetidos
             let filemgr = NSFileManager.defaultManager()
             let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
             
+            
+            
             let docsDir = dirPaths[0]
             //me genero el nombre del fichero de datos para grabar
-            let img = docsDir.stringByAppendingString("/info/img")
+            let img = docsDir.stringByAppendingString("/info")
+            
+            
+            //let info = NSBundle.mainBundle().bundlePath
+            //let img2 = info.stringByAppendingString("/info")
+            
             do {
                 try filemgr.createDirectoryAtPath(img, withIntermediateDirectories: true, attributes: nil)
             } catch let error as NSError {
                 print(error.localizedDescription);
             }
-            let pdf = docsDir.stringByAppendingString("/info/pdf")
-            do {
-                try filemgr.createDirectoryAtPath(pdf, withIntermediateDirectories: true, attributes: nil)
-            } catch let error as NSError {
-                print(error.localizedDescription);
-            }
+//            let pdf = docsDir.stringByAppendingString("/info/pdf")
+//            do {
+//                try filemgr.createDirectoryAtPath(pdf, withIntermediateDirectories: true, attributes: nil)
+//            } catch let error as NSError {
+//                print(error.localizedDescription);
+//            }
             
             
             

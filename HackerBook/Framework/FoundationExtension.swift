@@ -29,3 +29,15 @@ extension NSBundle {
         return self.URLForResource(tokens.first, withExtension: tokens.last, subdirectory:  subdirectory)
     }
 }
+
+
+extension String {
+    
+    func replace(string:String, replacement:String) -> String {
+        return self.stringByReplacingOccurrencesOfString(string, withString: replacement, options: NSStringCompareOptions.LiteralSearch, range: nil)
+    }
+    
+    func removeWhitespaces() -> String {
+        return self.replace(" ", replacement: "")
+    }
+}

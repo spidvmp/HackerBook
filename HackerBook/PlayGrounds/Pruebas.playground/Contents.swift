@@ -21,6 +21,9 @@ print (b)
 
 
 
+
+
+
 let s = a.componentsSeparatedByString(",").map({$0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())})
 print(s)
 let sep = NSCharacterSet(charactersInString: ", ")

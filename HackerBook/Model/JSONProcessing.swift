@@ -86,7 +86,7 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
     /*
     recibo un elemento del array de libros que es un diccionario. He de sacar toda la indformacion y comprobar que es correcta y devuelvo y elemento StructBook. Aqui tambien cambio el nombre del pdf y de la imagen del libro para tener la relacion interna, ya que me bajare de interner esa imagen y ese pdf para guardarlo en local
     */
-    //let filemgr = NSFileManager.defaultManager()
+    let filemgr = NSFileManager.defaultManager()
     let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
     
     let docsDir = dirPaths[0]
@@ -135,23 +135,39 @@ print(docsDir)
     
     //aqui tengo el dato completo de lo que me tengo que bajar, asi que es aqui donde me lo bajo
     
-    //print("ESTA COMENTADO bajar la imagen y pdf ",pdfUrl, imageUrl)
+    //primero tengo que crear el directorio, que sera el nombre del libro sin espacion e ira dentro de info, que ya deberia existir, se creo al principio en appdelegate
+    
+    //genero el path corto sin el camino principal, que lo ponga cada vez ios, solo me quedo desde  info en adelante
+    let shortPath = "/info/".stringByAppendingString((titulo?.removeWhitespaces())!).stringByAppendingString("/")
+    let path = docsDir.stringByAppendingString(shortPath)
+    //let path = NSBundle.mainBundle().bundlePath.stringByAppendingString("/info/").stringByAppendingString((titulo?.removeWhitespaces())!).stringByAppendingString("/")
+    
+    
+    do {
+        try filemgr.createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil)
+    } catch let error as NSError {
+        print(error.localizedDescription);
+    }
+    
 
-    //Me bajo la imagen y la guardo en /info/img/nombreImagen
+
+    //Me bajo la imagen y la guardo en /info/img/nombr
     let iurl = NSURL(string: imageUrl)
     print("Bajando ",iurl)
     let imgdata = NSData(contentsOfURL: iurl!)
-    let imagenPath = docsDir.stringByAppendingString("/info/img/").stringByAppendingString(nombreImagen!)
+    let imgpth = path.stringByAppendingString(nombreImagen!)
+    let imagenPath = shortPath.stringByAppendingString(nombreImagen!)
   
-    imgdata?.writeToFile(imagenPath, atomically: true)
+    imgdata?.writeToFile(imgpth, atomically: true)
     
     //bajo el pdf y lo guardo en /info/pdf/nombreImagen
     let purl = NSURL(string: pdfUrl)
     print("Bajando ", purl)
     let pdfdata = NSData(contentsOfURL: purl!)
-    let pdfPath = docsDir.stringByAppendingString("/info/pdf/").stringByAppendingString(nombrePdf!)
+    let pdfpth = path.stringByAppendingString(nombrePdf!)
+    let pdfPath = shortPath.stringByAppendingString(nombrePdf!)
     
-    pdfdata?.writeToFile(pdfPath, atomically: true)
+    pdfdata?.writeToFile(pdfpth, atomically: true)
 
     
     

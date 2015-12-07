@@ -14,8 +14,11 @@ func saveModel(datos d:[NCTBook]){
     let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
     
     let docsDir = dirPaths[0]
+    
     //me genero el nombre del fichero de datos para grabar
     let jsonFile = docsDir.stringByAppendingString("/info/model.data")
+    //let jsonFile = NSBundle.mainBundle().bundlePath.stringByAppendingString("/info/model.data")
+    print("Grabo JSON en ", jsonFile)
     if NSKeyedArchiver.archiveRootObject(d, toFile: jsonFile) {
         //print ("grabado")
     } else {
@@ -32,6 +35,8 @@ func loadModel() -> [NCTBook]{
     let docsDir = dirPaths[0]
     //me genero el nombre del fichero de datos para grabar
     let jsonFile = docsDir.stringByAppendingString("/info/model.data")
+    //let jsonFile = NSBundle.mainBundle().bundlePath.stringByAppendingString("/info/model.data")
+    print("Leo JSON de ", jsonFile)
     if let libritos = NSKeyedUnarchiver.unarchiveObjectWithFile(jsonFile) as? [NCTBook] {
         //else {
         return libritos
