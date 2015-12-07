@@ -9,7 +9,10 @@ import Foundation
 
 
 //MARK: - Graba y lee el modelo
-func saveModel(datos d:[NCTBook]){
+func saveModel(datos d:[NCTBook], inKey k:String){
+    //ecibo un array de NCTBook y lo guardo en la key que me pases, asi puedo tener un modelo para libros y otro para tags
+    /*
+    Esto era cuando lo grababa en un fichero
     //let filemgr = NSFileManager.defaultManager()
     let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
     
@@ -17,18 +20,30 @@ func saveModel(datos d:[NCTBook]){
     
     //me genero el nombre del fichero de datos para grabar
     let jsonFile = docsDir.stringByAppendingString("/info/model.data")
+
     //let jsonFile = NSBundle.mainBundle().bundlePath.stringByAppendingString("/info/model.data")
     print("Grabo JSON en ", jsonFile)
+
+    
     if NSKeyedArchiver.archiveRootObject(d, toFile: jsonFile) {
         //print ("grabado")
     } else {
         print("Error al grabar")
     }
+    */
     
+    let data = NSKeyedArchiver.archivedDataWithRootObject(d)
+    //grabo en Userdefaults con el tag que me han pasado
+    //let def =
+    NSUserDefaults.standardUserDefaults().setObject(data, forKey: k)
+    //def .setObject(data, forKey: k)
 }
 
 
-func loadModel() -> [NCTBook]{
+func loadModel(inKey k:String) -> [NCTBook]{
+    
+    /*
+    Esto era cuando grababa en disco
     //let filemgr = NSFileManager.defaultManager()
     let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
     
@@ -39,6 +54,14 @@ func loadModel() -> [NCTBook]{
     print("Leo JSON de ", jsonFile)
     if let libritos = NSKeyedUnarchiver.unarchiveObjectWithFile(jsonFile) as? [NCTBook] {
         //else {
+        return libritos
+    }
+    return []
+    */
+    //let def = NSUserDefaults.standardUserDefaults()
+    //primero saco el NSData
+    let data = NSUserDefaults.standardUserDefaults().objectForKey(k) as? NSData
+    if let libritos = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as? [NCTBook]{
         return libritos
     }
     return []

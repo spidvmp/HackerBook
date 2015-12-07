@@ -34,7 +34,7 @@ class NCTLibrary {
         tags = Array<String>()
         
         //lo primero que tengo que hacer el recuperar el modelo de datos que esta grabado en el fichero. EN caso de que no lea nada devuelve un array vacio
-        modeloOriginal = loadModel()
+        modeloOriginal = loadModel(inKey: "modeloLibros")
         
         //obtengo los tags que hay
         tags = getTagsFromModel()
