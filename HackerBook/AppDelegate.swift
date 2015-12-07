@@ -41,6 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //comprueba si ya se ha bajado la primera vez el json, si es que no, se lo baja, lo trata y lo guarda localemnte en un fichero
         //en el caso de que ya lo haya tratado, entonces se salta este paso. Al arrancar la clase NCTLibrary, esta lee el fichero y se genera el modelo
         let def = NSUserDefaults.standardUserDefaults()
+        print("Puesto a piñon fijo que es la primera vez")
+        
+        
         if !def.boolForKey("firsTime") {
             //creo los direcorios que voy a necesitar. creo info info/img info/pdf. En info guardo el json y los pdf y las imagenes en cada uno de los otors
             let filemgr = NSFileManager.defaultManager()

@@ -51,13 +51,15 @@ class HackerTVController: UITableViewController {
         }
         
         //obtenemos el libro
-        let libro = model.bookAtIndex(index: indexPath.row)
+        let libro = model.bookAtIndex(index: indexPath.row)!
 
         
         
-        cell?.textLabel?.text = libro?.titulo
-        cell?.detailTextLabel?.text = libro?.autores?.joinWithSeparator(", ")
-        //cell?.imageView?.image =
+        cell?.textLabel?.text = libro.titulo
+        cell?.detailTextLabel?.text = libro.autores?.joinWithSeparator(", ")
+       
+        let imagen = UIImage(contentsOfFile: libro.imagenPath!)
+        cell?.imageView?.image = imagen
         
         return cell!
     }

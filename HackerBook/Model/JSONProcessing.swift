@@ -29,6 +29,7 @@ enum JSONProcessingError : ErrorType {
 }
 
 //MARK: - Claves del modelo
+//nombres que me voy a encontrar en el Json, no son los mismos que en la estructura, xq la imagen y el pdf los trato y cambian
 enum JSONKeys: String {
     case titulo = "title"
     case autores = "authors"
@@ -44,8 +45,10 @@ struct StructBook {
     let titulo: String?
     let autores : [String]?
     let tags : [String]?
-    let imagen : String?
-    let pdf : String?
+    let nombreImagen : String?
+    let nombrePdf : String?
+    let imagenPath : String?
+    let pdfPath: String?
 }
 
 //MARK: - Decoding
@@ -87,7 +90,7 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
     let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
     
     let docsDir = dirPaths[0]
-
+print(docsDir)
     //saco datos que no hay que comprobar
     let titulo = l[JSONKeys.titulo.rawValue] as? String
     
@@ -118,7 +121,7 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
     }
     //tengo la imagenUrl, necesito solo el nombre, lo troceo separado por /
     let imagenRip = imageUrl.componentsSeparatedByString("/")
-    let imagen :String? = imagenRip[imagenRip.count - 1]
+    let nombreImagen :String? = imagenRip.last
     
     //troceo el pdf para quedarme solo con el nombre del pdf
     guard let pdfUrl = l[JSONKeys.pdf.rawValue] as? String else {
@@ -127,32 +130,38 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
     }
     //tengo el pdf, lo troceo separado por /
     let pdfRip = pdfUrl.componentsSeparatedByString("/")
-    let pdf : String? = pdfRip[pdfRip.count - 1]
+    let nombrePdf : String? = pdfRip.last
+
     
     //aqui tengo el dato completo de lo que me tengo que bajar, asi que es aqui donde me lo bajo
     
-    print("ESTA COMENTADO bajar la imagen y pdf ",pdfUrl, imageUrl)
-/*
+    //print("ESTA COMENTADO bajar la imagen y pdf ",pdfUrl, imageUrl)
+
+    //Me bajo la imagen y la guardo en /info/img/nombreImagen
     let iurl = NSURL(string: imageUrl)
+    print("Bajando ",iurl)
     let imgdata = NSData(contentsOfURL: iurl!)
-    let imgPath = docsDir.stringByAppendingString("/info/img/").stringByAppendingString(imagen!)
+    let imagenPath = docsDir.stringByAppendingString("/info/img/").stringByAppendingString(nombreImagen!)
+  
+    imgdata?.writeToFile(imagenPath, atomically: true)
     
-    imgdata?.writeToFile(imgPath, atomically: true)
-    
-    //bajo el pdf
+    //bajo el pdf y lo guardo en /info/pdf/nombreImagen
     let purl = NSURL(string: pdfUrl)
+    print("Bajando ", purl)
     let pdfdata = NSData(contentsOfURL: purl!)
-    let pdfPath = docsDir.stringByAppendingString("/info/pdf/").stringByAppendingString(pdf!)
+    let pdfPath = docsDir.stringByAppendingString("/info/pdf/").stringByAppendingString(nombrePdf!)
     
     pdfdata?.writeToFile(pdfPath, atomically: true)
-*/    
+
     
     
     return StructBook (titulo: titulo,
         autores: autores,
         tags: tags,
-        imagen: imagen,
-        pdf: pdf)
+        nombreImagen: nombreImagen,
+        nombrePdf: nombrePdf,
+        imagenPath: imagenPath,
+        pdfPath: pdfPath )
 }
 
 
@@ -167,7 +176,7 @@ func decodeStructBooksToNCTBooksArray(books l:[StructBook]) -> [NCTBook]?{
 }
 
 
-//MARK: - Inicializadores de conveniencia de libroo y libreria 
+//MARK: - Inicializadores de conveniencia de libroo y libreria
 extension NCTBook {
     
     //inicializador de conveniencia de libros, recibe un struct y lo convierte a objeto NCTBook para que se guarde en el array de libros
@@ -178,9 +187,10 @@ extension NCTBook {
         self.init(titulo : l.titulo,
             autores: l.autores,
             tags: l.tags,
-            urlImagen: l.imagen,
-            urlPDF: l.pdf
-            
+            nombreImagen: l.nombreImagen,
+            nombrePdf: l.nombrePdf,
+            imagenPath: l.imagenPath,
+            pdfPath: l.pdfPath
             )
     }
 }
