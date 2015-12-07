@@ -20,6 +20,7 @@
 		2BA29E341C0F7F5F00672472 /* DownloadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA29E331C0F7F5F00672472 /* DownloadController.swift */; };
 		2BEB0F2D1C12086600A63CDA /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB0F2C1C12086600A63CDA /* FileUtils.swift */; };
 		2BEE83FD1C1562FE0005F041 /* FoundationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEE83FC1C1562FE0005F041 /* FoundationExtension.swift */; };
+		2BEE84011C15F9380005F041 /* DetalledeVista.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEE84001C15F9380005F041 /* DetalledeVista.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		2BA29E331C0F7F5F00672472 /* DownloadController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DownloadController.swift; path = Controllers/DownloadController.swift; sourceTree = "<group>"; };
 		2BEB0F2C1C12086600A63CDA /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileUtils.swift; path = Utils/FileUtils.swift; sourceTree = "<group>"; };
 		2BEE83FC1C1562FE0005F041 /* FoundationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoundationExtension.swift; path = Framework/FoundationExtension.swift; sourceTree = "<group>"; };
+		2BEE84001C15F9380005F041 /* DetalledeVista.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetalledeVista.swift; path = Controllers/DetalledeVista.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				2BA29E291C0F5DB500672472 /* HackerTVController.swift */,
 				2BA29E331C0F7F5F00672472 /* DownloadController.swift */,
+				2BEE84001C15F9380005F041 /* DetalledeVista.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BEE84011C15F9380005F041 /* DetalledeVista.swift in Sources */,
 				2BA29E341C0F7F5F00672472 /* DownloadController.swift in Sources */,
 				2B0D0BFD1C0325CC0065C968 /* UIKitExtension.swift in Sources */,
 				2BA29E2A1C0F5DB500672472 /* HackerTVController.swift in Sources */,

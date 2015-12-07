@@ -104,14 +104,25 @@ class HackerTVController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        return true
+    }
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        //averiguamos si el segue es el correcto
+        if segue.identifier == "DetalleDeCelda" {
+            //obtenemos el controlador de destino, esta creado pero no visible
+            let destino = segue.destinationViewController as? DetalledeVista
+            //ahora obtenemos la celda para sacar el libro que tenemos que pasar
+            let ip = self.tableView.indexPathForSelectedRow
+            //sabiendo la celda pulsada hay que llamar al metodo que me diga quelibro
+            let libro = model!.bookAtIndex(index: (ip?.row)!)
+            destino?.libro = libro
+        }
     }
-    */
+    
 
 }

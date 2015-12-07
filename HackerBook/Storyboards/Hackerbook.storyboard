@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Libreria-->
         <scene sceneID="7In-mW-dVo">
             <objects>
-                <tableViewController storyboardIdentifier="HackerTVController" id="aE3-D4-Das" customClass="HackerTVController" customModule="HackerBook" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="HackerTVController" title="Libreria" id="aE3-D4-Das" customClass="HackerTVController" customModule="HackerBook" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="r6Y-xS-g1r">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,6 +24,9 @@
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <segue destination="LO0-ys-Fm1" kind="show" identifier="DetalleDeCelda" id="J9H-ki-I9v"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -35,7 +38,59 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dN1-vA-lcf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="614" y="449"/>
+            <point key="canvasLocation" x="590" y="429"/>
+        </scene>
+        <!--Libro-->
+        <scene sceneID="7xV-1s-kfz">
+            <objects>
+                <viewController title="Libro" id="LO0-ys-Fm1" customClass="DetalledeVista" customModule="HackerBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lUs-a7-KAk"/>
+                        <viewControllerLayoutGuide type="bottom" id="jTS-x9-rbB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1GX-9p-3ah">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UGc-iZ-5fL">
+                                <rect key="frame" x="20" y="148" width="240" height="325"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwK-z2-RJw">
+                                <rect key="frame" x="279" y="154" width="249" height="24"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXH-lg-FHH">
+                                <rect key="frame" x="279" y="201" width="267" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhc-Eh-rnN">
+                                <rect key="frame" x="279" y="266" width="278" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="autores" destination="mXH-lg-FHH" id="yRC-wo-bBg"/>
+                        <outlet property="portada" destination="UGc-iZ-5fL" id="lQc-F6-nos"/>
+                        <outlet property="tags" destination="Rhc-Eh-rnN" id="uVB-ta-NXV"/>
+                        <outlet property="titulo" destination="UwK-z2-RJw" id="Mq7-uC-FkP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v3G-c8-bCM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1248" y="440"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cKS-XM-y53">
