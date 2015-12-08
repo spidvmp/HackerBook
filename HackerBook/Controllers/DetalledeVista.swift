@@ -34,7 +34,13 @@ class DetalledeVista: UIViewController {
         titulo.text = libro?.titulo
         autores.text = libro?.autores?.joinWithSeparator(",")
         tags.text = libro?.tags?.joinWithSeparator(",")
+        let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        
+        let docsDir = dirPaths[0]
 
+        portada.image = UIImage(contentsOfFile: docsDir.stringByAppendingString((libro?.imagenPath)!))
+        portada.layer.cornerRadius = 5.0
+        portada.clipsToBounds = true
         // Do any additional setup after loading the view.
     }
     

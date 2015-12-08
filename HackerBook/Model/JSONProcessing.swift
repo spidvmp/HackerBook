@@ -154,20 +154,20 @@ print(docsDir)
     //Me bajo la imagen y la guardo en /info/img/nombr
     let iurl = NSURL(string: imageUrl)
     print("Bajando Capado",iurl)
-    //let imgdata = NSData(contentsOfURL: iurl!)
+    let imgdata = NSData(contentsOfURL: iurl!)
     let imgpth = path.stringByAppendingString(nombreImagen!)
     let imagenPath = shortPath.stringByAppendingString(nombreImagen!)
   
-    //imgdata?.writeToFile(imgpth, atomically: true)
+    imgdata?.writeToFile(imgpth, atomically: true)
     
     //bajo el pdf y lo guardo en /info/pdf/nombreImagen
     let purl = NSURL(string: pdfUrl)
     print("Bajando Capado", purl)
-    //let pdfdata = NSData(contentsOfURL: purl!)
+    let pdfdata = NSData(contentsOfURL: purl!)
     let pdfpth = path.stringByAppendingString(nombrePdf!)
     let pdfPath = shortPath.stringByAppendingString(nombrePdf!)
     
-    //pdfdata?.writeToFile(pdfpth, atomically: true)
+    pdfdata?.writeToFile(pdfpth, atomically: true)
 
     
     
