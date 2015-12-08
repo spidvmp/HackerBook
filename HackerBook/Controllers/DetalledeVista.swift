@@ -11,10 +11,10 @@ import UIKit
 class DetalledeVista: UIViewController {
 
     @IBOutlet weak var portada: UIImageView!
-    @IBOutlet weak var titulo: UILabel!
     @IBOutlet weak var autores: UILabel!
     @IBOutlet weak var tags: UILabel!
     
+    @IBOutlet weak var tituloText: UITextView!
     
     //defino el modelo de libro que voy a recibir, sobre este hay que modificar la vista
     //defino libro como opcional y asi me evito los inicializadores
@@ -31,9 +31,11 @@ class DetalledeVista: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titulo.text = libro?.titulo
-        autores.text = libro?.autores?.joinWithSeparator(",")
-        tags.text = libro?.tags?.joinWithSeparator(",")
+        //El titulo lo pongo en un textview porque hay titulos muy grandes, asi ocupan varias lineas
+        
+        tituloText.text = libro?.titulo
+        autores.text = libro?.autores?.joinWithSeparator(", ")
+        tags.text = libro?.tags?.joinWithSeparator(", ")
         let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         
         let docsDir = dirPaths[0]
