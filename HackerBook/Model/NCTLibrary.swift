@@ -87,6 +87,7 @@ class NCTLibrary {
     func bookAtIndex(index i: Int) -> NCTBook? {
         //me envian un indice y en la tabla de libros le devuelvo el libro que hay
         //si me pasa un valor que se sale del indice devuelve nil
+        //esta tabla esta ordenada alfabeticamente, asi qeu coincide con el orden de la tabla
         if i < 0 || i > booksCount {
             return nil
         }

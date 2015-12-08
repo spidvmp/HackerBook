@@ -29,6 +29,10 @@ class HackerTVController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("DetalleDeCelda", sender: indexPath.row)
+    }
 
     // MARK: - Table view data source
 
@@ -119,8 +123,11 @@ class HackerTVController: UITableViewController {
             //ahora obtenemos la celda para sacar el libro que tenemos que pasar
             let ip = self.tableView.indexPathForSelectedRow
             //sabiendo la celda pulsada hay que llamar al metodo que me diga quelibro
-            let libro = model!.bookAtIndex(index: (ip?.row)!)
-            destino?.libro = libro
+            if let libro = model.bookAtIndex(index: (ip?.row)!) {
+                print("libro ", libro, "destino.libro ", destino?.libro)     
+                destino?.libro = libro
+            }
+            
         }
     }
     
