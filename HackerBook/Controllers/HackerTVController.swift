@@ -63,7 +63,7 @@ class HackerTVController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-            performSegueWithIdentifier("DetalleDeCelda", sender: indexPath.row)
+            performSegueWithIdentifier("DetalleDeCelda", sender: indexPath)
     }
 
     // MARK: - Table view data source
@@ -118,6 +118,8 @@ class HackerTVController: UITableViewController {
     
 
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        
         let headerView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 20))
         let label = UILabel(frame: CGRectMake(0, 0, tableView.bounds.size.width, 20))
         
@@ -127,10 +129,11 @@ class HackerTVController: UITableViewController {
             label.text = ""
         }
         label.backgroundColor = UIColor.defaultColorHacker()
-
+        
         
         headerView.addSubview(label)
         return headerView;
+        
     }
     
 
@@ -188,17 +191,17 @@ class HackerTVController: UITableViewController {
                 if let libro = model.bookAtIndexPath(indexPath: ip!) {
                     destino?.libro = libro
                     
-                } else {
-                    if let libro = model.bookAtIndex(index: (ip?.row)!) {
-                        print("libro ", libro, "destino.libro ", destino?.libro)
-                        destino?.libro = libro
-                    }
                 }
-                
+            } else {
+                if let libro = model.bookAtIndex(index: (ip?.row)!) {
+                    print("libro ", libro, "destino.libro ", destino?.libro)
+                    destino?.libro = libro
+                }
             }
+            
         }
     }
-    
 
-        
+
+
 }

@@ -34,9 +34,7 @@
                             <outlet property="delegate" destination="aE3-D4-Das" id="IEL-Hp-d0Y"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Libreria" id="J0c-fU-hp3">
-                        <barButtonItem key="backBarButtonItem" title="kj" id="qui-jc-BKh"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Libreria" id="J0c-fU-hp3"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dN1-vA-lcf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
