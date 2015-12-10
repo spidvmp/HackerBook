@@ -30,6 +30,8 @@ class HackerTVController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        
 
     }
 
@@ -92,12 +94,21 @@ class HackerTVController: UITableViewController {
         return cell!
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 20))
+        let label = UILabel(frame: CGRectMake(0, 0, tableView.bounds.size.width, 20))
+        
         if orderByTags {
-            return model.tagNameForSection(section)
+            label.text = model.tagNameForSection(section)
         } else {
-            return nil
+            label.text = ""
         }
+        label.backgroundColor = UIColor.defaultColorHacker()
+
+        
+        headerView.addSubview(label)
+        return headerView;
     }
     
 
