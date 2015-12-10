@@ -23,6 +23,15 @@ class HackerTVController: UITableViewController {
         print("estoy en la tabla")
         //cargo el modelo
         model = NCTLibrary()
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+
+        let r = model.booksForTag("Git")
+        print(r)
     }
 
     override func didReceiveMemoryWarning() {

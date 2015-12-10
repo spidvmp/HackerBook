@@ -16,7 +16,7 @@ class NCTLibrary {
     //la tercera tabla sera el modelo original, que lo sacare de la lectura del fichero, le modificare los favoritos y sera el que guarde
     //la cuarta es un array con las tas ordenadas alfabeticamente, siendo favoritos la primera
     private var books: [NCTBook]
-    private var booksByTags: [String:[NCTBook]]
+    private var booksByTags: [String:Set<NCTBook>]
     private var modeloOriginal: [NCTBook]
     private var tags: [String]
     
@@ -29,19 +29,25 @@ class NCTLibrary {
         
         //inicializo los arrays
         books = Array<NCTBook>()
-        booksByTags = Dictionary<String, Array<NCTBook>>()
+        booksByTags = Dictionary<String, Set<NCTBook>>()
         modeloOriginal = Array<NCTBook>()
         tags = Array<String>()
         
         //lo primero que tengo que hacer el recuperar el modelo de datos que esta grabado en el fichero. EN caso de que no lea nada devuelve un array vacio
         modeloOriginal = loadModel(inKey: "modeloLibros")
         
-        //obtengo los tags que hay
+        //obtengo los tags que hay ordenados alfabeticamente, esto me servira para sacar las secciones. Aqui esta incluido Favoritos el primero
+        //Todos los tags tendran algun libro, ya que el listado de tags los saco cuando me recorro los libros
         tags = getTagsFromModel()
         
         //genero los libros que hay ordenados alfabeticamente
         books = getBooksInAlphabeticalOrder()
         
+        //genero los libros ordenados por tag, es un diccionario de tag:conjunto de libros
+        booksByTags = getBooksByTag()
+        
+        
+    
         
     }
     
@@ -54,35 +60,13 @@ class NCTLibrary {
         }
     }
     
+   
 
     
-    //MARK: - Methods
-    func bookCountForTag(tag: String) -> Int{
-        /*
-        recibe un string como tag, cuenta cuantos libros tienen ese tag y devuelve lo que ha contado
-        */
-        
-        return (self.booksForTag(tag)?.count)!
+    //MARK: - datasource delegate Libros alfabeticos
 
-    }
     
-    func booksForTag(tag:String) -> [NCTBook]? {
-        /*
-        recibe un String como tag y devuelve un array con todos los libros que tienene ese tag
-        */
-        var librosConTag:[NCTBook]?
-        
-        //me recorro toda la libreria y bisco si en el tag en el array de tags
-        for l in books {
-            let li = l as? NCTBook
-            //compruebo si tiene el tag
-            //if ( l.tags.contains(tag)) {
-            //    librosConTag?.append(li!)
-            //}
-        }
-        return librosConTag
-        
-    }
+
     
     func bookAtIndex(index i: Int) -> NCTBook? {
         //me envian un indice y en la tabla de libros le devuelvo el libro que hay
@@ -92,6 +76,46 @@ class NCTLibrary {
             return nil
         }
         return books[i]
+        
+    }
+    
+    //MARK: - Datasource dlegate Libros por tag
+    func bookCountForTag(tag: String) -> Int{
+        /*
+        recibe un string como tag, cuenta cuantos libros tienen ese tag y devuelve lo que ha contado. Ese tag ya vieen capitalizado
+        */
+        let conj = self.booksByTags[tag]
+        return (conj?.count)!
+        
+    }
+    
+    func booksForTag(tag:String) -> [NCTBook]? {
+        /*
+        recibe un String como tag y devuelve un array con todos los libros que tiene ese tag ordenados alfabeticamente
+        */
+        var librosConTag:[NCTBook]?
+        let c = booksByTags[tag]
+        
+        //en c esta el conjunto con los libros que hay que devlver en orden alfabetico
+        for each in c! {
+            print (each)
+            librosConTag?.append(each)
+        }
+        
+        //ahora lo ordeno alfabeticamente
+        librosConTag?.sort(<)
+        
+        //librosConTag = booksByTags[tag]
+        
+        //me recorro toda la libreria y bisco si en el tag en el array de tags
+//        for l in books {
+//            let li = l as? NCTBook
+//            //compruebo si tiene el tag
+//            //if ( l.tags.contains(tag)) {
+//            //    librosConTag?.append(li!)
+//            //}
+//        }
+        return librosConTag
         
     }
     
@@ -131,6 +155,27 @@ class NCTLibrary {
     func getBooksInAlphabeticalOrder() -> [NCTBook] {
         //del original los ordeno alfabeticamente y lo devuelvo
         return modeloOriginal.sort({$0.titulo < $1.titulo})
+        
+    }
+    
+    func getBooksByTag() -> [String:Set<NCTBook>] {
+        
+        //voy a necesitar un diccionario en el que voy metiendo todos los tags con sus libros.
+        var arr = Dictionary<String, Set<NCTBook>>()
+
+        //me recorro los tags que hay para generar el array con la clave y el conjunto vacio, estoy seguro que todos los tags tienen al menos un libro, de esta forma me evito hacer un if para saber si ya esta creado el conjunto o no
+        tags.map({arr[$0] = Set<NCTBook>()})
+        
+        //me recorro el modeloOriginal y por cada libro lo voy metiendo en cada conjunto del tag
+        for each in modeloOriginal {
+            //pongo el tag en mayusculas xq es asi como lo tengo en la tabla de tags
+            each.tags!.map({arr[$0.capitalizedString]?.insert(each)})
+        }
+        
+        //print(arr)
+        
+        
+        return arr
         
     }
 

@@ -32,6 +32,7 @@
 		2B0D0BFC1C0325CC0065C968 /* UIKitExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIKitExtension.swift; path = Framework/UIKitExtension.swift; sourceTree = "<group>"; };
 		2B0D0BFF1C032E520065C968 /* NCTBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NCTBook.swift; path = Model/NCTBook.swift; sourceTree = "<group>"; };
 		2B0D0C011C032E670065C968 /* NCTLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NCTLibrary.swift; path = Model/NCTLibrary.swift; sourceTree = "<group>"; };
+		2B15241C1C18488600A9615F /* Diccionarios.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Diccionarios.playground; path = ../Diccionarios.playground; sourceTree = "<group>"; };
 		2B993C101C03849200AFFC47 /* JSONProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONProcessing.swift; path = Model/JSONProcessing.swift; sourceTree = "<group>"; };
 		2B993C121C03A8ED00AFFC47 /* Pruebas.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Pruebas.playground; path = PlayGrounds/Pruebas.playground; sourceTree = "<group>"; };
 		2BA29E221C0F5C2000672472 /* Hackerbook.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Hackerbook.storyboard; path = Storyboards/Hackerbook.storyboard; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 				2BA29E211C0F5BEF00672472 /* Storyboards */,
 				2B0D0BFB1C0325940065C968 /* Framework */,
 				2B993C121C03A8ED00AFFC47 /* Pruebas.playground */,
+				2B15241C1C18488600A9615F /* Diccionarios.playground */,
 			);
 			path = HackerBook;
 			sourceTree = "<group>";
