@@ -65,7 +65,16 @@ class NCTLibrary {
     
     //MARK: - datasource delegate Libros alfabeticos
 
-    
+    //Genero una variable computada para saber rapidamente si hay o no algo en favoritos
+    var hayFavoritos : Bool {
+        get{
+            if  countBooksForTag("Favoritos") > 0 {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
 
     
     func bookAtIndex(index i: Int) -> NCTBook? {
@@ -80,7 +89,18 @@ class NCTLibrary {
     }
     
     //MARK: - Datasource dlegate Libros por tag
-    func bookCountForTag(tag: String) -> Int{
+    func countNumberOfTags() -> Int {
+        //he de comprbar si hay algo en favoritos
+        //if  countBooksForTag("Favoritos") > 0 {
+        if hayFavoritos {
+            return tags.count
+        } else {
+            //no hay favoritos, asi que he de restar elprimer elemento de tags
+            return tags.count - 1
+        }
+        
+    }
+    func countBooksForTag(tag: String) -> Int{
         /*
         recibe un string como tag, cuenta cuantos libros tienen ese tag y devuelve lo que ha contado. Ese tag ya vieen capitalizado
         */
@@ -89,52 +109,61 @@ class NCTLibrary {
         
     }
     
+    func countBooksForSection(section: Int) -> Int {
+        //en la tabla me envian un numero para indicar la seccion. Esa seccion corresponde con un tag segun la tabla tags, de ahi saco el nombre del tag
+        //Depende de si hay favoritos o no, la seccion cambia, ya que si no hay favoritos habra tags.count -1 secciones, Asi que hay que ir comprobando
+        if hayFavoritos {
+            return countBooksForTag(tags[section])
+        } else {
+            //no hay favoritos, asi que la seccion 0 corresponde con el tag que esta en tags[1], asi que sumo 1 a la seccion para que me devuelva el valor correcto
+            return countBooksForTag(tags[section + 1])
+        }
+    }
+    
     func booksForTag(tag:String) -> [NCTBook]? {
         /*
         recibe un String como tag y devuelve un array con todos los libros que tiene ese tag ordenados alfabeticamente
         */
-        var librosConTag:[NCTBook]?
+        var librosConTag:[NCTBook]
+        //inicializo librosConTag, ya no es opcional, en el peor de los casos es un array sin elementos, pero ya existe
+        librosConTag = Array<NCTBook>()
         let c = booksByTags[tag]
         
         //en c esta el conjunto con los libros que hay que devlver en orden alfabetico
         for each in c! {
             print (each)
-            librosConTag?.append(each)
+            librosConTag.append(each)
         }
         
         //ahora lo ordeno alfabeticamente
-        librosConTag?.sort(<)
-        
-        //librosConTag = booksByTags[tag]
-        
-        //me recorro toda la libreria y bisco si en el tag en el array de tags
-//        for l in books {
-//            let li = l as? NCTBook
-//            //compruebo si tiene el tag
-//            //if ( l.tags.contains(tag)) {
-//            //    librosConTag?.append(li!)
-//            //}
-//        }
+        librosConTag.sort({$0 < $1})
+
         return librosConTag
         
     }
     
-//    func bookAtIndex(tag:String, index: Int) -> NCTBook? {
-//        /*
-//        Recibe un String como tag y un indice, busca los libros con ese tag y devuelve el que este en el orden index
-//        */
-//        
-//        //saco los loibros con ese tag
-//        if let b : [NCTBook] = self.booksForTag(tag) {
-//            //vigila que index sea menos que el numero de elementos que hay, si no, cagada
-//            guard index < b.count else {
-//                return nil
-//            }
-//            return b[index]
-//        }
-//        
-//        return nil;
-//    }
+    func bookAtIndexPath(indexPath ip:NSIndexPath) -> NCTBook? {
+        /*
+        Recibe el indexPath, de ahi puedo sacat el tag (seccion) y que libro de esa seccion
+        */
+        
+        //obtengo la seccion, calculando si hay favorito o no
+        var tag : String
+        if hayFavoritos {
+            tag = tags[ip.section]
+        } else {
+            tag = tags[ip.section + 1]
+        }
+        
+        
+        //obtengo el listado de libros ordenados que hay en ese tag
+        if let l = booksForTag(tag) {
+            //si me ha devuelto algo, entoces solo devuelvo el elemento x que corresponda con ip.row
+            return l[ip.row]
+        } else {
+            return nil
+        }
+    }
 
     //MARK: - Funciones de inicializacion
     func getTagsFromModel() -> [String] {

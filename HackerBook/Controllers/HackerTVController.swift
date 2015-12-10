@@ -11,6 +11,8 @@ import UIKit
 class HackerTVController: UITableViewController {
     
     var model : NCTLibrary!
+    //defino un Bool para indicar si tengo que mostrar la tabla ordenada por libros alfabeticos o por tags
+    var orderByTags : Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +30,7 @@ class HackerTVController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
 
-        let r = model.booksForTag("Git")
-        print(r)
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,13 +45,20 @@ class HackerTVController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-
-        return 1
+        //compruebo de donde saco los datos
+        if orderByTags {
+            return model.countNumberOfTags()
+        } else {
+            return 1
+        }
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return model.booksCount
+        if orderByTags {
+            return model.countBooksForSection(section)
+        } else {
+            return model.booksCount
+        }
     }
 
     
@@ -62,20 +68,25 @@ class HackerTVController: UITableViewController {
         if  cell == nil {
             cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "Libros")
         }
+        var libro : NCTBook?
+        //libro = <NCTBook>
         
-        //obtenemos el libro
-        let libro = model.bookAtIndex(index: indexPath.row)!
-
+        //obtenemos el libro, segun sea alfabeticamente o de tags
+        if orderByTags {
+            libro = model.bookAtIndexPath(indexPath: indexPath)
+        } else {
+            libro = model.bookAtIndex(index: indexPath.row)
+        }
         
         
-        cell?.textLabel?.text = libro.titulo
-        cell?.detailTextLabel?.text = libro.autores?.joinWithSeparator(", ")
+        cell?.textLabel?.text = libro?.titulo
+        cell?.detailTextLabel?.text = libro?.autores?.joinWithSeparator(", ")
        
         let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         
         let docsDir = dirPaths[0]
         
-        let imagen = UIImage(contentsOfFile: docsDir.stringByAppendingString(libro.imagenPath!))
+        let imagen = UIImage(contentsOfFile: docsDir.stringByAppendingString((libro?.imagenPath)!))
         cell?.imageView?.image = imagen
         
         return cell!

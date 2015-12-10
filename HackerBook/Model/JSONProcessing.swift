@@ -90,7 +90,7 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
     let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
     
     let docsDir = dirPaths[0]
-print(docsDir)
+//print(docsDir)
     //saco datos que no hay que comprobar
     let titulo = l[JSONKeys.titulo.rawValue] as? String
     

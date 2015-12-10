@@ -66,7 +66,39 @@ class NCTBook: NSObject, NSCoding {
         aCoder.encodeBool(favorite, forKey: "favorite")
         
     }
+
+    //MAR: - Proxys
+    
+    var proxyForComparasion : String {
+        //genero un string para poder comparar los 2 objetos
+        get {
+            //genero el string de autores
+            var aut : String = ""
+            autores?.map({aut.stringByAppendingString($0)})
+            return "\(titulo)\(aut)"
+        }
+    }
     
     
+}
+
+
+//MARK: - Operadores
+
+//hago operadores para comparar 2 libros y saber cual es mayor que el otro
+func == (lhs: NCTBook, rhs: NCTBook) -> Bool {
     
+    //compruebo si es el mismo objeto
+    guard !( lhs == rhs ) else {
+        return true
+    }
+    
+    //comparo los datos necesarios para saber si son iguales
+    return (lhs.proxyForComparasion == rhs.proxyForComparasion)
+    
+}
+
+func < (lhs: NCTBook, rhs: NCTBook) -> Bool {
+    //en este caso solo compruebo el orden alfabetico del titulo
+    return (lhs.titulo < rhs.titulo)
 }
