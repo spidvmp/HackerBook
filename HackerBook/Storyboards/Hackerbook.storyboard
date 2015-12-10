@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Libreria-->
@@ -53,20 +54,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UGc-iZ-5fL">
-                                <rect key="frame" x="20" y="72" width="99" height="130"/>
+                                <rect key="frame" x="20" y="121" width="99" height="130"/>
                                 <animations/>
                                 <variation key="widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="68" y="123" width="199" height="306"/>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="72" width="155" height="168"/>
+                                    <rect key="frame" x="20" y="110" width="155" height="168"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="109" width="120" height="162"/>
+                                    <rect key="frame" x="20" y="109" width="98" height="134"/>
                                 </variation>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jl3-jk-e0i">
+                                <rect key="frame" x="139" y="121" width="204" height="106"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="304" y="123" width="273" height="210"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="205" y="110" width="575" height="168"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="126" y="109" width="232" height="203"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="304" y="111" width="476" height="318"/>
+                                </variation>
+                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXH-lg-FHH">
-                                <rect key="frame" x="20" y="224" width="311" height="20"/>
+                                <rect key="frame" x="20" y="265" width="311" height="20"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -75,7 +96,7 @@
                                     <rect key="frame" x="309" y="346" width="268" height="20"/>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="256" width="760" height="20"/>
+                                    <rect key="frame" x="20" y="326" width="760" height="20"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="20" y="320" width="338" height="20"/>
@@ -84,28 +105,8 @@
                                     <rect key="frame" x="68" y="453" width="712" height="20"/>
                                 </variation>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jl3-jk-e0i">
-                                <rect key="frame" x="139" y="72" width="192" height="106"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="304" y="123" width="273" height="210"/>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="205" y="72" width="575" height="168"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="148" y="109" width="219" height="203"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="304" y="111" width="476" height="318"/>
-                                </variation>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhc-Eh-rnN">
-                                <rect key="frame" x="20" y="252" width="311" height="20"/>
+                                <rect key="frame" x="20" y="293" width="311" height="20"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="Palatino-Italic" family="Palatino" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -114,7 +115,7 @@
                                     <rect key="frame" x="309" y="381" width="268" height="20"/>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="284" width="760" height="20"/>
+                                    <rect key="frame" x="20" y="354" width="760" height="20"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="20" y="348" width="338" height="20"/>
@@ -123,12 +124,45 @@
                                     <rect key="frame" x="68" y="492" width="712" height="20"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l83-sM-tVy">
+                                <rect key="frame" x="227" y="72" width="104" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
+                                <state key="normal" title="Leer Libro"/>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="673" y="72" width="107" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="252" y="71" width="106" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="LeerLibro:" destination="LO0-ys-Fm1" eventType="touchUpInside" id="xuA-xE-sj3"/>
+                                    <segue destination="aFm-EW-4oC" kind="show" identifier="PDFView" id="hFs-XU-b3e"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0h-hb-0mT">
+                                <rect key="frame" x="20" y="72" width="99" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
+                                <state key="normal" title="Favorito"/>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="72" width="155" height="30"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="71" width="98" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="Favorito:" destination="LO0-ys-Fm1" eventType="touchUpInside" id="daO-JT-AdZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="autores" destination="mXH-lg-FHH" id="yRC-wo-bBg"/>
+                        <outlet property="favorito" destination="V0h-hb-0mT" id="2d7-Cb-OiF"/>
+                        <outlet property="leer" destination="l83-sM-tVy" id="Qr7-7M-rya"/>
                         <outlet property="portada" destination="UGc-iZ-5fL" id="lQc-F6-nos"/>
                         <outlet property="tags" destination="Rhc-Eh-rnN" id="uVB-ta-NXV"/>
                         <outlet property="tituloText" destination="jl3-jk-e0i" id="2xr-F1-bi8"/>
@@ -137,6 +171,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v3G-c8-bCM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1296" y="438"/>
+        </scene>
+        <!--PDF Reader-->
+        <scene sceneID="wGx-L6-cSe">
+            <objects>
+                <viewController title="PDF Reader" id="aFm-EW-4oC" customClass="PDFView" customModule="HackerBook" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2kM-ID-q1T"/>
+                        <viewControllerLayoutGuide type="bottom" id="2ue-aw-OBT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xMy-SJ-0NT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdD-9f-la1">
+                                <rect key="frame" x="20" y="72" width="560" height="508"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JdD-9f-la1" firstAttribute="top" secondItem="2kM-ID-q1T" secondAttribute="bottom" constant="8" id="DjM-hd-ELN"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="JdD-9f-la1" secondAttribute="leading" id="J7w-XQ-q2G"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JdD-9f-la1" secondAttribute="trailing" id="iXM-hz-3uR"/>
+                            <constraint firstItem="2ue-aw-OBT" firstAttribute="top" secondItem="JdD-9f-la1" secondAttribute="bottom" constant="20" id="oeh-Yv-jKP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pdfWebView" destination="JdD-9f-la1" id="Tjc-qV-9Xl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t6t-Ap-yGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2077" y="438"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cKS-XM-y53">

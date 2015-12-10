@@ -13,6 +13,7 @@
 		2B0D0BFD1C0325CC0065C968 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D0BFC1C0325CC0065C968 /* UIKitExtension.swift */; };
 		2B0D0C001C032E520065C968 /* NCTBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D0BFF1C032E520065C968 /* NCTBook.swift */; };
 		2B0D0C021C032E670065C968 /* NCTLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0D0C011C032E670065C968 /* NCTLibrary.swift */; };
+		2B15241E1C19D65C00A9615F /* PDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B15241D1C19D65C00A9615F /* PDFView.swift */; };
 		2B993C111C03849200AFFC47 /* JSONProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B993C101C03849200AFFC47 /* JSONProcessing.swift */; };
 		2BA29E231C0F5C2000672472 /* Hackerbook.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BA29E221C0F5C2000672472 /* Hackerbook.storyboard */; };
 		2BA29E2A1C0F5DB500672472 /* HackerTVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA29E291C0F5DB500672472 /* HackerTVController.swift */; };
@@ -33,6 +34,7 @@
 		2B0D0BFF1C032E520065C968 /* NCTBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NCTBook.swift; path = Model/NCTBook.swift; sourceTree = "<group>"; };
 		2B0D0C011C032E670065C968 /* NCTLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NCTLibrary.swift; path = Model/NCTLibrary.swift; sourceTree = "<group>"; };
 		2B15241C1C18488600A9615F /* Diccionarios.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Diccionarios.playground; path = ../Diccionarios.playground; sourceTree = "<group>"; };
+		2B15241D1C19D65C00A9615F /* PDFView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PDFView.swift; path = Controllers/PDFView.swift; sourceTree = "<group>"; };
 		2B993C101C03849200AFFC47 /* JSONProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONProcessing.swift; path = Model/JSONProcessing.swift; sourceTree = "<group>"; };
 		2B993C121C03A8ED00AFFC47 /* Pruebas.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Pruebas.playground; path = PlayGrounds/Pruebas.playground; sourceTree = "<group>"; };
 		2BA29E221C0F5C2000672472 /* Hackerbook.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Hackerbook.storyboard; path = Storyboards/Hackerbook.storyboard; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				2BA29E291C0F5DB500672472 /* HackerTVController.swift */,
 				2BA29E331C0F7F5F00672472 /* DownloadController.swift */,
 				2BEE84001C15F9380005F041 /* DetalledeVista.swift */,
+				2B15241D1C19D65C00A9615F /* PDFView.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				2B0D0C021C032E670065C968 /* NCTLibrary.swift in Sources */,
 				2B0D0BEF1C0316B70065C968 /* AppDelegate.swift in Sources */,
 				2B0D0C001C032E520065C968 /* NCTBook.swift in Sources */,
+				2B15241E1C19D65C00A9615F /* PDFView.swift in Sources */,
 				2B993C111C03849200AFFC47 /* JSONProcessing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
