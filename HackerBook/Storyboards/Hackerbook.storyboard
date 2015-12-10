@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -16,7 +17,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="HJK-kr-ym5">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LibroCell" id="HJK-kr-ym5">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HJK-kr-ym5" id="0Je-Xb-guG">
@@ -53,9 +54,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UGc-iZ-5fL">
-                                <rect key="frame" x="20" y="121" width="99" height="130"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UGc-iZ-5fL">
+                                <rect key="frame" x="20" y="175" width="100" height="130"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="iNN-mB-LP3"/>
+                                    <constraint firstAttribute="width" constant="100" id="whO-3B-JDa"/>
+                                </constraints>
                                 <variation key="widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="68" y="123" width="199" height="306"/>
                                 </variation>
@@ -66,10 +71,14 @@
                                     <rect key="frame" x="20" y="109" width="98" height="134"/>
                                 </variation>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jl3-jk-e0i">
-                                <rect key="frame" x="139" y="121" width="204" height="106"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jl3-jk-e0i">
+                                <rect key="frame" x="135" y="175" width="445" height="130"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jl3-jk-e0i" secondAttribute="height" multiplier="89:26" id="W6Q-dJ-AAk"/>
+                                    <constraint firstAttribute="height" constant="130" id="kiq-mN-Gbw"/>
+                                </constraints>
                                 <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -86,9 +95,13 @@
                                     <rect key="frame" x="304" y="111" width="476" height="318"/>
                                 </variation>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXH-lg-FHH">
-                                <rect key="frame" x="20" y="265" width="311" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXH-lg-FHH">
+                                <rect key="frame" x="20" y="319" width="560" height="20"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="SY0-aO-Rq3"/>
+                                    <constraint firstAttribute="width" secondItem="mXH-lg-FHH" secondAttribute="height" multiplier="28:1" id="dG4-tc-Bug"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -105,28 +118,43 @@
                                     <rect key="frame" x="68" y="453" width="712" height="20"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhc-Eh-rnN">
-                                <rect key="frame" x="20" y="293" width="311" height="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0h-hb-0mT">
+                                <rect key="frame" x="20" y="90" width="100" height="30"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" name="Palatino-Italic" family="Palatino" pointSize="12"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="309" y="381" width="268" height="20"/>
-                                </variation>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ANz-Ig-gIa"/>
+                                    <constraint firstAttribute="width" constant="100" id="Mqq-Rg-gPx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
+                                <state key="normal" title="Favorito"/>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="354" width="760" height="20"/>
+                                    <rect key="frame" x="20" y="72" width="155" height="30"/>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="348" width="338" height="20"/>
+                                    <rect key="frame" x="20" y="71" width="98" height="30"/>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="68" y="492" width="712" height="20"/>
-                                </variation>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l83-sM-tVy">
-                                <rect key="frame" x="227" y="72" width="104" height="30"/>
+                                <connections>
+                                    <action selector="Favorito:" destination="LO0-ys-Fm1" eventType="touchUpInside" id="daO-JT-AdZ"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mcs-dM-d05">
+                                <rect key="frame" x="20" y="347" width="560" height="69"/>
                                 <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="mcs-dM-d05" secondAttribute="height" multiplier="560:69" id="JPh-fe-ibr"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" name="Palatino-Italic" family="Palatino" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l83-sM-tVy">
+                                <rect key="frame" x="480" y="90" width="100" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="RVa-YA-SEg"/>
+                                    <constraint firstAttribute="height" constant="30" id="ajS-VT-cyu"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
                                 <state key="normal" title="Leer Libro"/>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
@@ -140,31 +168,37 @@
                                     <segue destination="aFm-EW-4oC" kind="show" identifier="PDFView" id="hFs-XU-b3e"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0h-hb-0mT">
-                                <rect key="frame" x="20" y="72" width="99" height="30"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
-                                <state key="normal" title="Favorito"/>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="72" width="155" height="30"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="71" width="98" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="Favorito:" destination="LO0-ys-Fm1" eventType="touchUpInside" id="daO-JT-AdZ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jl3-jk-e0i" firstAttribute="top" secondItem="l83-sM-tVy" secondAttribute="bottom" constant="55" id="0dM-h0-c7a"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="mXH-lg-FHH" secondAttribute="leading" id="69p-Qb-IDW"/>
+                            <constraint firstItem="UGc-iZ-5fL" firstAttribute="leading" secondItem="V0h-hb-0mT" secondAttribute="leading" id="8Kr-ia-WpT"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="V0h-hb-0mT" secondAttribute="leading" id="9Qd-yk-Gha"/>
+                            <constraint firstItem="mXH-lg-FHH" firstAttribute="leading" secondItem="V0h-hb-0mT" secondAttribute="leading" id="ADR-T3-LDt"/>
+                            <constraint firstItem="mcs-dM-d05" firstAttribute="leading" secondItem="V0h-hb-0mT" secondAttribute="leading" id="AMD-YV-PG5"/>
+                            <constraint firstItem="jl3-jk-e0i" firstAttribute="leading" secondItem="UGc-iZ-5fL" secondAttribute="trailing" constant="15" id="BPN-yO-uuM"/>
+                            <constraint firstItem="mcs-dM-d05" firstAttribute="top" secondItem="mXH-lg-FHH" secondAttribute="bottom" constant="8" id="MlX-pe-pBm"/>
+                            <constraint firstItem="UGc-iZ-5fL" firstAttribute="top" secondItem="V0h-hb-0mT" secondAttribute="bottom" constant="55" id="N8J-2b-UvU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mcs-dM-d05" secondAttribute="trailing" id="OuT-g0-UUg"/>
+                            <constraint firstItem="l83-sM-tVy" firstAttribute="top" secondItem="lUs-a7-KAk" secondAttribute="bottom" constant="26" id="SnW-Vl-mue"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jl3-jk-e0i" secondAttribute="trailing" id="Sx9-L4-MBk"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="mcs-dM-d05" secondAttribute="leading" id="XFx-gV-trv"/>
+                            <constraint firstItem="mXH-lg-FHH" firstAttribute="top" secondItem="UGc-iZ-5fL" secondAttribute="bottom" constant="14" id="es9-2R-LsB"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="UGc-iZ-5fL" secondAttribute="leading" id="gm0-Lp-6pE"/>
+                            <constraint firstItem="V0h-hb-0mT" firstAttribute="top" secondItem="lUs-a7-KAk" secondAttribute="bottom" constant="26" id="kgx-f9-1hs"/>
+                            <constraint firstItem="l83-sM-tVy" firstAttribute="trailing" secondItem="jl3-jk-e0i" secondAttribute="trailing" id="mcZ-rt-Vzg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="l83-sM-tVy" secondAttribute="trailing" id="u6e-fi-tdn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mXH-lg-FHH" secondAttribute="trailing" id="xjS-e4-RRN"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="autores" destination="mXH-lg-FHH" id="yRC-wo-bBg"/>
                         <outlet property="favorito" destination="V0h-hb-0mT" id="2d7-Cb-OiF"/>
                         <outlet property="leer" destination="l83-sM-tVy" id="Qr7-7M-rya"/>
                         <outlet property="portada" destination="UGc-iZ-5fL" id="lQc-F6-nos"/>
-                        <outlet property="tags" destination="Rhc-Eh-rnN" id="uVB-ta-NXV"/>
+                        <outlet property="tags" destination="mcs-dM-d05" id="uiZ-Xy-lzj"/>
                         <outlet property="tituloText" destination="jl3-jk-e0i" id="2xr-F1-bi8"/>
                     </connections>
                 </viewController>

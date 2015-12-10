@@ -89,10 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             //print("no lo tengo. Comentada la opcion de ponerlo a true para no volver a leer")
             def.setBool(true, forKey: "firsTime")
-            print("He cargado y procesado")
             
-        } else {
-            print("Lo tengo, no he hecho nada")
         }
         
         

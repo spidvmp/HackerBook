@@ -12,7 +12,7 @@ class HackerTVController: UITableViewController {
     
     var model : NCTLibrary!
     //defino un Bool para indicar si tengo que mostrar la tabla ordenada por libros alfabeticos o por tags
-    var orderByTags : Bool = true
+    var orderByTags : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,6 @@ class HackerTVController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        print("estoy en la tabla")
         //cargo el modelo
         model = NCTLibrary()
         

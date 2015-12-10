@@ -132,7 +132,6 @@ class NCTLibrary {
         
         //en c esta el conjunto con los libros que hay que devlver en orden alfabetico
         for each in c! {
-            print (each)
             librosConTag.append(each)
         }
         

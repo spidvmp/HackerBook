@@ -12,7 +12,7 @@ class DetalledeVista: UIViewController {
 
     @IBOutlet weak var portada: UIImageView!
     @IBOutlet weak var autores: UILabel!
-    @IBOutlet weak var tags: UILabel!
+    @IBOutlet weak var tags: UITextView!
     @IBOutlet weak var tituloText: UITextView!
     @IBOutlet weak var favorito: UIButton!
     @IBOutlet weak var leer: UIButton!
