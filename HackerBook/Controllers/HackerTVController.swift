@@ -25,11 +25,21 @@ class HackerTVController: UITableViewController {
         print("estoy en la tabla")
         //cargo el modelo
         model = NCTLibrary()
-
+        
+        //creo el boton para cambiar de vista
+        let menu_button = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain , target: self, action: "cambiaVista")
+        
+        self.navigationItem.rightBarButtonItem = menu_button
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if orderByTags {
+            self.navigationItem.rightBarButtonItem!.title = "Alfa"
+        } else {
+            self.navigationItem.rightBarButtonItem!.title = "Tags"
+        }
         
         
 
@@ -38,6 +48,18 @@ class HackerTVController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //MARK: - Actions
+    func cambiaVista() {
+        orderByTags = !orderByTags
+        if orderByTags {
+            self.navigationItem.rightBarButtonItem!.title = "Alfa"
+        } else {
+            self.navigationItem.rightBarButtonItem!.title = "Tags"
+        }
+        tableView.reloadData()
+        
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

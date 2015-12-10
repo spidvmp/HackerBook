@@ -73,7 +73,7 @@ class NCTBook: NSObject, NSCoding {
         //genero un string para poder comparar los 2 objetos
         get {
             //genero el string de autores
-            var aut : String = ""
+            let aut : String = ""
             autores?.map({aut.stringByAppendingString($0)})
             return "\(titulo)\(aut)"
         }

@@ -129,7 +129,7 @@ class DownloadController: UIViewController, NSURLSessionDownloadDelegate {
             //cuando termina de bajarselo lo guarda
             let path = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)
             let documentDirectoryPath:String = path[0]
-            let fileManager = NSFileManager()
+            //let fileManager = NSFileManager()
             let destinationURLForFile = NSURL(fileURLWithPath: documentDirectoryPath.stringByAppendingString("/file.pdf"))
             
 //            if fileManager.fileExistsAtPath(destinationURLForFile.path!){
