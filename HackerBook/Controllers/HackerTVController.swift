@@ -39,7 +39,7 @@ class HackerTVController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("DetalleDeCelda", sender: indexPath.row)
+            performSegueWithIdentifier("DetalleDeCelda", sender: indexPath.row)
     }
 
     // MARK: - Table view data source
@@ -92,6 +92,14 @@ class HackerTVController: UITableViewController {
         return cell!
     }
     
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if orderByTags {
+            return model.tagNameForSection(section)
+        } else {
+            return nil
+        }
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -142,14 +150,22 @@ class HackerTVController: UITableViewController {
             let destino = segue.destinationViewController as? DetalledeVista
             //ahora obtenemos la celda para sacar el libro que tenemos que pasar
             let ip = self.tableView.indexPathForSelectedRow
-            //sabiendo la celda pulsada hay que llamar al metodo que me diga quelibro
-            if let libro = model.bookAtIndex(index: (ip?.row)!) {
-                print("libro ", libro, "destino.libro ", destino?.libro)     
-                destino?.libro = libro
+            //sabiendo la celda pulsada hay que llamar al metodo que me diga que libro, es, pero depende de si estamos mostrando la tabla ordenada o por tags
+            if  orderByTags {
+                if let libro = model.bookAtIndexPath(indexPath: ip!) {
+                    destino?.libro = libro
+                    
+                } else {
+                    if let libro = model.bookAtIndex(index: (ip?.row)!) {
+                        print("libro ", libro, "destino.libro ", destino?.libro)
+                        destino?.libro = libro
+                    }
+                }
+                
             }
-            
         }
     }
     
 
+        
 }

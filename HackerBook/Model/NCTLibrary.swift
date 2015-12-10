@@ -76,6 +76,7 @@ class NCTLibrary {
         }
     }
 
+
     
     func bookAtIndex(index i: Int) -> NCTBook? {
         //me envian un indice y en la tabla de libros le devuelvo el libro que hay
@@ -142,7 +143,7 @@ class NCTLibrary {
         
     }
     
-    func bookAtIndexPath(indexPath ip:NSIndexPath) -> NCTBook? {
+    func bookAtIndexPath(indexPath ip: NSIndexPath) -> NCTBook? {
         /*
         Recibe el indexPath, de ahi puedo sacat el tag (seccion) y que libro de esa seccion
         */
@@ -200,11 +201,16 @@ class NCTLibrary {
             //pongo el tag en mayusculas xq es asi como lo tengo en la tabla de tags
             each.tags!.map({arr[$0.capitalizedString]?.insert(each)})
         }
-        
-        //print(arr)
-        
-        
         return arr
+        
+    }
+    
+    func tagNameForSection(section : Int ) -> String {
+        if hayFavoritos {
+            return tags[section]
+        } else {
+            return tags[section + 1]
+        }
         
     }
 
