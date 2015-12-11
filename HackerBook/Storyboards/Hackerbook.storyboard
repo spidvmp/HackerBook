@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -79,7 +81,7 @@
                                     <constraint firstAttribute="width" secondItem="jl3-jk-e0i" secondAttribute="height" multiplier="89:26" id="W6Q-dJ-AAk"/>
                                     <constraint firstAttribute="height" constant="130" id="kiq-mN-Gbw"/>
                                 </constraints>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="widthClass=regular" fixedFrame="YES">
@@ -119,14 +121,13 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V0h-hb-0mT">
-                                <rect key="frame" x="20" y="90" width="100" height="30"/>
+                                <rect key="frame" x="20" y="90" width="125" height="30"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="ANz-Ig-gIa"/>
-                                    <constraint firstAttribute="width" constant="100" id="Mqq-Rg-gPx"/>
+                                    <constraint firstAttribute="width" constant="125" id="XIO-5d-NfA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
-                                <state key="normal" title="Favorito"/>
+                                <state key="normal" title="Quitar Favorito"/>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="20" y="72" width="155" height="30"/>
                                 </variation>
@@ -174,21 +175,20 @@
                         <constraints>
                             <constraint firstItem="jl3-jk-e0i" firstAttribute="top" secondItem="l83-sM-tVy" secondAttribute="bottom" constant="55" id="0dM-h0-c7a"/>
                             <constraint firstAttribute="leadingMargin" secondItem="mXH-lg-FHH" secondAttribute="leading" id="69p-Qb-IDW"/>
-                            <constraint firstItem="UGc-iZ-5fL" firstAttribute="leading" secondItem="V0h-hb-0mT" secondAttribute="leading" id="8Kr-ia-WpT"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="V0h-hb-0mT" secondAttribute="leading" id="9Qd-yk-Gha"/>
-                            <constraint firstItem="mXH-lg-FHH" firstAttribute="leading" secondItem="V0h-hb-0mT" secondAttribute="leading" id="ADR-T3-LDt"/>
-                            <constraint firstItem="mcs-dM-d05" firstAttribute="leading" secondItem="V0h-hb-0mT" secondAttribute="leading" id="AMD-YV-PG5"/>
                             <constraint firstItem="jl3-jk-e0i" firstAttribute="leading" secondItem="UGc-iZ-5fL" secondAttribute="trailing" constant="15" id="BPN-yO-uuM"/>
                             <constraint firstItem="mcs-dM-d05" firstAttribute="top" secondItem="mXH-lg-FHH" secondAttribute="bottom" constant="8" id="MlX-pe-pBm"/>
-                            <constraint firstItem="UGc-iZ-5fL" firstAttribute="top" secondItem="V0h-hb-0mT" secondAttribute="bottom" constant="55" id="N8J-2b-UvU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mcs-dM-d05" secondAttribute="trailing" id="OuT-g0-UUg"/>
+                            <constraint firstItem="V0h-hb-0mT" firstAttribute="leading" secondItem="UGc-iZ-5fL" secondAttribute="leading" id="S75-P4-3Ib"/>
                             <constraint firstItem="l83-sM-tVy" firstAttribute="top" secondItem="lUs-a7-KAk" secondAttribute="bottom" constant="26" id="SnW-Vl-mue"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jl3-jk-e0i" secondAttribute="trailing" id="Sx9-L4-MBk"/>
                             <constraint firstAttribute="leadingMargin" secondItem="mcs-dM-d05" secondAttribute="leading" id="XFx-gV-trv"/>
+                            <constraint firstItem="V0h-hb-0mT" firstAttribute="firstBaseline" secondItem="l83-sM-tVy" secondAttribute="baseline" id="bn1-Yw-Cw8"/>
                             <constraint firstItem="mXH-lg-FHH" firstAttribute="top" secondItem="UGc-iZ-5fL" secondAttribute="bottom" constant="14" id="es9-2R-LsB"/>
                             <constraint firstAttribute="leadingMargin" secondItem="UGc-iZ-5fL" secondAttribute="leading" id="gm0-Lp-6pE"/>
-                            <constraint firstItem="V0h-hb-0mT" firstAttribute="top" secondItem="lUs-a7-KAk" secondAttribute="bottom" constant="26" id="kgx-f9-1hs"/>
+                            <constraint firstItem="V0h-hb-0mT" firstAttribute="baseline" secondItem="l83-sM-tVy" secondAttribute="firstBaseline" id="l77-G2-XON"/>
                             <constraint firstItem="l83-sM-tVy" firstAttribute="trailing" secondItem="jl3-jk-e0i" secondAttribute="trailing" id="mcZ-rt-Vzg"/>
+                            <constraint firstItem="UGc-iZ-5fL" firstAttribute="top" secondItem="jl3-jk-e0i" secondAttribute="top" id="mpS-Df-gGb"/>
+                            <constraint firstItem="V0h-hb-0mT" firstAttribute="top" secondItem="l83-sM-tVy" secondAttribute="top" id="tcQ-au-3Va"/>
                             <constraint firstAttribute="trailingMargin" secondItem="l83-sM-tVy" secondAttribute="trailing" id="u6e-fi-tdn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mXH-lg-FHH" secondAttribute="trailing" id="xjS-e4-RRN"/>
                         </constraints>

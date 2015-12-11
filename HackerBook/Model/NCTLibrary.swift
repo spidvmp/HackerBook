@@ -9,7 +9,7 @@
 import Foundation
 
 
-class NCTLibrary {
+class NCTLibrary  {
 
     //MARK: - Properties
     //voy a tener 4 arrays, uno de libros alfabeticamente, otra de tags y como contenido de cada elemento tendre un objeto NCTBook
@@ -23,6 +23,8 @@ class NCTLibrary {
     
     //MARK: - init
     init(){
+        
+        
         //Se que tengo el modelo de libros en un fichero que he de leer y despues he de procesar para generar la tabla de libros y la tabla de tags
         //no lo proceso ni grabo desde el principio, xq si me cambian un favorito deberia modificarlo en 2 tablas y grabar 2 ficheros, asi que mantengo
         //el original que es el que cambio y grabo
@@ -38,16 +40,25 @@ class NCTLibrary {
         
         //obtengo los tags que hay ordenados alfabeticamente, esto me servira para sacar las secciones. Aqui esta incluido Favoritos el primero
         //Todos los tags tendran algun libro, ya que el listado de tags los saco cuando me recorro los libros
-        tags = getTagsFromModel()
+        tags = self.getTagsFromModel()
         
         //genero los libros que hay ordenados alfabeticamente
-        books = getBooksInAlphabeticalOrder()
+        books = self.getBooksInAlphabeticalOrder()
         
         //genero los libros ordenados por tag, es un diccionario de tag:conjunto de libros
-        booksByTags = getBooksByTag()
+        booksByTags = self.getBooksByTag()
         
         
+        //observo las notificaciones para saber si un libro ha cambiado el estado de favorito, cuando reciba una notificacion
+        //se ejecuta el selector y este debera hacer todo lo necesario, meter o sacar de favoritos
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeFavorite", name: FAVORITE_NOTIFICATION, object: nil)
+        
+        
+        
+    }
     
+    deinit {
+       NSNotificationCenter.defaultCenter().removeObserver(self)
         
     }
     
@@ -210,6 +221,12 @@ class NCTLibrary {
         } else {
             return tags[section + 1]
         }
+        
+    }
+    
+    //MARK: - Notifications
+    func changeFavorite(notification : NSNotification) -> Void {
+        print("change favorite ", notification)
         
     }
 

@@ -65,6 +65,12 @@ class DetalledeVista: UIViewController {
         portada.layer.cornerRadius = 5.0
         portada.clipsToBounds = true
         
+        if libro!.favorite {
+            self.favorito.setTitle("Quitar Favorito", forState: UIControlState.Normal)
+
+        } else {
+            self.favorito.setTitle("Favorito", forState: UIControlState.Normal)
+        }
         
     }
     
@@ -77,8 +83,16 @@ class DetalledeVista: UIViewController {
     @IBAction func Favorito(sender: AnyObject) {
         
         //cambio el valor del libro si es favorito o no
-        //let fav = libro?.favorite
-        //libro?.favorite = !fav
+        libro?.changeFavorite = !libro!.favorite
+        if libro!.favorite {
+            self.favorito.setTitle("Quitar Favorito", forState: UIControlState.Normal)
+        
+        } else {
+            self.favorito.setTitle("Favorito", forState: UIControlState.Normal)
+        }
+        
+        
+        
     }
 
     

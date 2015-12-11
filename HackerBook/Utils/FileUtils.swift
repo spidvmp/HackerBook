@@ -8,6 +8,8 @@
 import Foundation
 
 
+
+
 //MARK: - Graba y lee el modelo
 func saveModel(datos d:[NCTBook], inKey k:String){
     //recibo un array de NCTBook y lo guardo en la key que me pases, asi puedo tener un modelo para libros y otro para tags

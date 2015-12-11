@@ -21,6 +21,7 @@
 		2BEB0F2D1C12086600A63CDA /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEB0F2C1C12086600A63CDA /* FileUtils.swift */; };
 		2BEE83FD1C1562FE0005F041 /* FoundationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEE83FC1C1562FE0005F041 /* FoundationExtension.swift */; };
 		2BEE84011C15F9380005F041 /* DetalledeVista.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEE84001C15F9380005F041 /* DetalledeVista.swift */; };
+		2BEEDB461C1B4C5000D43898 /* defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BEEDB451C1B4C5000D43898 /* defines.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		2BEB0F2C1C12086600A63CDA /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileUtils.swift; path = Utils/FileUtils.swift; sourceTree = "<group>"; };
 		2BEE83FC1C1562FE0005F041 /* FoundationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoundationExtension.swift; path = Framework/FoundationExtension.swift; sourceTree = "<group>"; };
 		2BEE84001C15F9380005F041 /* DetalledeVista.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetalledeVista.swift; path = Controllers/DetalledeVista.swift; sourceTree = "<group>"; };
+		2BEEDB451C1B4C5000D43898 /* defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = defines.swift; path = Utils/defines.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				2BEB0F2C1C12086600A63CDA /* FileUtils.swift */,
+				2BEEDB451C1B4C5000D43898 /* defines.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				2BEE84011C15F9380005F041 /* DetalledeVista.swift in Sources */,
 				2B0D0BFD1C0325CC0065C968 /* UIKitExtension.swift in Sources */,
 				2BA29E2A1C0F5DB500672472 /* HackerTVController.swift in Sources */,
+				2BEEDB461C1B4C5000D43898 /* defines.swift in Sources */,
 				2BEB0F2D1C12086600A63CDA /* FileUtils.swift in Sources */,
 				2BEE83FD1C1562FE0005F041 /* FoundationExtension.swift in Sources */,
 				2B0D0C021C032E670065C968 /* NCTLibrary.swift in Sources */,

@@ -21,6 +21,22 @@ class NCTBook: NSObject, NSCoding {
     let imagenPath : String?
     let pdfPath : String?
     var favorite : Bool
+    var changeFavorite : Bool{
+        get{
+            return favorite
+        }
+        set(value){
+            favorite = value
+            //if value {
+                //es verdadero, añadir grupo favoritos envio notificacion
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(FAVORITE_NOTIFICATION, object: self, userInfo: ["libro": self])
+            //} else {
+                //es falso, sacar de grupo favoritos
+            //}
+        }
+        
+    }
     
     //inicializador designado
     //MARK: - Init
