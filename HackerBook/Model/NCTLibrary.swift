@@ -180,8 +180,7 @@ class NCTLibrary  {
         modeloOriginal.map({$0.tags.map({$0.map({tagSet.insert($0)})})})
         //el set lo transformo a array, lo ordeno, le pongo la primera letra mayuscula y se lo añado a la tabla resultado que ya tiene primero a Favoritos
         Array(tagSet).sort({$0 < $1}).map({resultado.append($0.capitalizedString)})
-        //resultado.first("Favoritos")!
-        //print(resultado)
+
       return resultado
     }
     
@@ -203,7 +202,10 @@ class NCTLibrary  {
         for each in modeloOriginal {
             //pongo el tag en mayusculas xq es asi como lo tengo en la tabla de tags
             each.tags!.map({arr[$0.capitalizedString]?.insert(each)})
-            print(each.titulo," es favorito ", each.favorite)
+            if  each.favorite {
+                //es favorito, ademas lo inserto en el tag de Favorites
+                arr[FAVORITOS]?.insert(each)
+            }
         }
         return arr
         

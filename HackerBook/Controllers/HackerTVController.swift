@@ -71,12 +71,10 @@ class HackerTVController: UITableViewController {
     }
     
     func cambiaFavorito(notification : NSNotification) {
-        print("Recibo ", notification)
         //ejecuto del mofdelo un metodo para cambiar el favorito, incluido en favoritos
         model.chageFavoriteBook(notification.object as? NCTBook)
         
         //recargo la tabla
-        //self.tableView.reloadSections(Set<Int>[0,1], withRowAnimation: UITableViewRowAnimation.Automatic)
         self.tableView.reloadData()
         
     }
@@ -209,11 +207,9 @@ class HackerTVController: UITableViewController {
             if  orderByTags {
                 if let libro = model.bookAtIndexPath(indexPath: ip!) {
                     destino?.libro = libro
-                    
                 }
             } else {
                 if let libro = model.bookAtIndex(index: (ip?.row)!) {
-                    print("libro ", libro, "destino.libro ", destino?.libro)
                     destino?.libro = libro
                 }
             }
