@@ -17,9 +17,19 @@ class DetalledeVista: UIViewController {
     @IBOutlet weak var favorito: UIButton!
     @IBOutlet weak var leer: UIButton!
     
+//    //defino detailItem que es el 
+//    var detailItem: AnyObject? {
+//        didSet {
+//            // Update the view.
+//            self.configureView()
+//        }
+//    }
+
 
     //defino el modelo de libro que voy a recibir, sobre este hay que modificar la vista
     //defino libro como opcional y asi me evito los inicializadores
+    
+    
     var libro : NCTBook? {
         //observador de propiedades, sirve para saber cuando se ha modificado una propiedad
         //willSet se llama antes de asignarse la variable y didSet despues de asignarse, asi que en willSet libro es nil y en didSet ya tiene valor
@@ -27,7 +37,7 @@ class DetalledeVista: UIViewController {
 
         }
         didSet {
-            //updateUI()
+            updateUI()
 
         }
     }
@@ -40,7 +50,7 @@ class DetalledeVista: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        updateUI()
+        //updateUI()
     }
     
     
@@ -55,25 +65,26 @@ class DetalledeVista: UIViewController {
         //ha cambiado el modelo, pongo los nuevos valores
         //El titulo lo pongo en un textview porque hay titulos muy grandes, asi ocupan varias lineas
         
-        if libro == nil {
-            return
-        }
-        tituloText.text = libro?.titulo
-        autores.text = libro?.autores?.joinWithSeparator(", ")
-        tags.text = libro?.tags?.joinWithSeparator(", ")
-        let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        
-        let docsDir = dirPaths[0]
-        
-        portada.image = UIImage(contentsOfFile: docsDir.stringByAppendingString((libro?.imagenPath)!))
-        portada.layer.cornerRadius = 5.0
-        portada.clipsToBounds = true
-        
-        if libro!.favorite {
-            self.favorito.setTitle("Quitar Favorito", forState: UIControlState.Normal)
-
-        } else {
-            self.favorito.setTitle("Favorito", forState: UIControlState.Normal)
+        //es posible que libro llegue a nil, asi que se comprueba, si tiene datos se rellena
+        if let l = self.libro {
+            //si libro tiene valor relleno
+            tituloText.text = l.titulo
+            autores.text = l.autores?.joinWithSeparator(", ")
+            tags.text = l.tags?.joinWithSeparator(", ")
+            let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+            
+            let docsDir = dirPaths[0]
+            
+            portada.image = UIImage(contentsOfFile: docsDir.stringByAppendingString((l.imagenPath)!))
+            portada.layer.cornerRadius = 5.0
+            portada.clipsToBounds = true
+            
+            if l.favorite {
+                self.favorito.setTitle("Quitar Favorito", forState: UIControlState.Normal)
+                
+            } else {
+                self.favorito.setTitle("Favorito", forState: UIControlState.Normal)
+            }
         }
         
     }
