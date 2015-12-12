@@ -35,21 +35,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         //genero el controlador del split, que es el root casteado a UISplitviewController
         let splitViewController = self.window!.rootViewController as! UISplitViewController
         //el controlador izquierdo es el primer elemento del splitviewcontroller
-        let leftNavController = splitViewController.viewControllers.first as! UINavigationController
+        let leftNavController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         
         //pongo el boton del detalle cuando se gira
         leftNavController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         
         //pongo el delegado
         splitViewController.delegate = self
-        //
-        //let masterViewController = leftNavController.topViewController as! HackerTVController
-        
-        //el detailcontroller es el segundo de los controladores del splitviewcontroller
-        //let detailViewController = splitViewController.viewControllers.last as! DetalledeVista
-
-        
-        
+ 
         window?.makeKeyAndVisible()
         return true
     }
@@ -74,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         //print("Puesto a piñon fijo que es la primera vez")
         
         
-        if !def.boolForKey("firsTime") {
+        if !def.boolForKey(FIRST_TIME) {
             //creo los direcorios que voy a necesitar. creo info . En info guardo el json y un directorio por cada libro, donde guardo la imagen y el pdf, asi evito nombres repetidos
             let filemgr = NSFileManager.defaultManager()
             let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)

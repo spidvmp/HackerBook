@@ -24,9 +24,9 @@ class HackerTVController: UITableViewController {
         
         //creo el boton para cambiar la vista de la tabla de tags a alfabetico, no le doy valor xq se actualizara en el willappear
         let menu_button = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain , target: self, action: "cambiaVista")
-        
         self.navigationItem.rightBarButtonItem = menu_button
-
+        
+        
         //compruebo que el split
         if let split = self.splitViewController {
             let controllers = split.viewControllers
@@ -91,8 +91,8 @@ class HackerTVController: UITableViewController {
         
         //recargo la tabla
         self.tableView.reloadData()
-        
-    }
+self.tableView.dele
+        }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
             performSegueWithIdentifier("DetalleDeCelda", sender: indexPath)
     }
