@@ -32,6 +32,10 @@ class HackerTVController: UITableViewController {
             let controllers = split.viewControllers
             //Me quedo con el puntero al controlador de detalle
             self.detalleDeVista = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetalledeVista
+            
+            //pongo el ultimo libro visitado cuando arranca por primera vez, lo guardo en Userdefault
+            let last = NSUserDefaults.standardUserDefaults().integerForKey(LAST_BOOK)
+            self.detalleDeVista?.libro = model.bookAtIndex(index: last)
         }
         
     }
@@ -205,6 +209,9 @@ class HackerTVController: UITableViewController {
                   
                 }
             }
+            
+            //ya tengo el libro que es. Lo guardo en el userdefaults para que la proxima vez que arranque la app aparezca
+            model.saveLastBook( destino.libro!)
             
         }
     }

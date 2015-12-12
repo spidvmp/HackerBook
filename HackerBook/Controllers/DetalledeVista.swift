@@ -44,7 +44,7 @@ class DetalledeVista: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("Libro=",libro)
         // Do any additional setup after loading the view.
         self.updateUI()
     }

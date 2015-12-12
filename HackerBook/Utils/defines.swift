@@ -13,3 +13,6 @@ import Foundation
 
 //nombre de la notificaicon cuando un libro cambia de valor favorito
 let FAVORITE_NOTIFICATION = "Favoritoghmfghmfghmn"
+
+//ultimo libro visitado
+let LAST_BOOK = "lastBook"

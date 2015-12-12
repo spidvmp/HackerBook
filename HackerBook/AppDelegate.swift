@@ -92,15 +92,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             } catch let error as NSError {
                 print(error.localizedDescription);
             }
-//            let pdf = docsDir.stringByAppendingString("/info/pdf")
-//            do {
-//                try filemgr.createDirectoryAtPath(pdf, withIntermediateDirectories: true, attributes: nil)
-//            } catch let error as NSError {
-//                print(error.localizedDescription);
-//            }
-            
-            
-            
             
             //es la primera vez, me tengo que bajar todo y tratarlo
             //dowloadJSON se baja el JSOn trata los datos, se baja las imagenes y pdf y devuelve un array de SrtuctBook
@@ -113,10 +104,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
             }
 
-            
-            
-            //print("no lo tengo. Comentada la opcion de ponerlo a true para no volver a leer")
+            //es la primera y unica vez que se supone que pasara por aqui. Lo marcomo como que ya ha pasado
             def.setBool(true, forKey: "firsTime")
+            //ademas pongo por defecto un valor al utlimo libro leido para que aparezca algo. Pongo el primer libro que se sacara del array de libros, asi que el 0
+            def.setInteger(0, forKey: LAST_BOOK)
+            
             
         }
         
