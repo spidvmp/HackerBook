@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
 
@@ -23,21 +23,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //hay que comprobar si es la primera vez y bajar el json de internet
         checkDownloadedJSON()
         
-        //cuando salimos de aqui, si es la primera vez se ha cargado todo, si no no ha hecho nada
-        //El modelo esta grabado en ./info/model.data
-
-        
         //creamos la interfaz grafica
         sb = UIStoryboard(name: "Hackerbook", bundle: nil)
+        //definimos el tamalo de la pantall
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        //Le indicamos que el rootvirecontroller es la primera pantalla del Storyboard
+        window?.rootViewController = sb.instantiateInitialViewController()
+        
+        //genero el controlador del split, que es el root casteado a UISplitviewController
+        let splitViewController = self.window!.rootViewController as! UISplitViewController
+        //el controlador izquierdo es el primer elemento del splitviewcontroller
+        let leftNavController = splitViewController.viewControllers.first as! UINavigationController
+        
+        //pongo el boton del detalle cuando se gira
+        leftNavController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+        
+        //pongo el delegado
+        splitViewController.delegate = self
+        //
+        //let masterViewController = leftNavController.topViewController as! HackerTVController
+        
+        //el detailcontroller es el segundo de los controladores del splitviewcontroller
+        //let detailViewController = splitViewController.viewControllers.last as! DetalledeVista
+        
+        //ponemos 
+        
+        
         
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeFavorite", name: FAVORITE_NOTIFICATION, object: nil)
         
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = sb.instantiateInitialViewController()
+        
         window?.makeKeyAndVisible()
         return true
     }
     
+    
+    // MARK: - Split view
+    
+//    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController, ontoPrimaryViewController primaryViewController:UIViewController) -> Bool {
+//        guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
+//        guard let topAsDetailController = secondaryAsNavController.topViewController as? DetailViewController else { return false }
+//        if topAsDetailController.detailItem == nil {
+//            // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
+//            return true
+//        }
+//        return false
+//    }
     
 //    func changeFavorite() {
 //        print("App delegate, recibo la notificacion ")

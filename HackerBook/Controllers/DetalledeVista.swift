@@ -27,6 +27,7 @@ class DetalledeVista: UIViewController {
 
         }
         didSet {
+            //updateUI()
 
         }
     }
@@ -54,6 +55,9 @@ class DetalledeVista: UIViewController {
         //ha cambiado el modelo, pongo los nuevos valores
         //El titulo lo pongo en un textview porque hay titulos muy grandes, asi ocupan varias lineas
         
+        if libro == nil {
+            return
+        }
         tituloText.text = libro?.titulo
         autores.text = libro?.autores?.joinWithSeparator(", ")
         tags.text = libro?.tags?.joinWithSeparator(", ")
@@ -84,7 +88,7 @@ class DetalledeVista: UIViewController {
         
         //cambio el valor del libro si es favorito o no
         libro?.changeFavorite = !libro!.favorite
-        NSNotificationCenter.defaultCenter().postNotificationName(FAVORITE_NOTIFICATION, object: self, userInfo: ["libro": self])
+        //NSNotificationCenter.defaultCenter().postNotificationName(FAVORITE_NOTIFICATION, object: self, userInfo: ["libro": self])
         //NSNotificationCenter.defaultCenter().postNotificationName(FAVORITE_NOTIFICATION, object: self)
         if libro!.favorite {
             self.favorito.setTitle("Quitar Favorito", forState: UIControlState.Normal)

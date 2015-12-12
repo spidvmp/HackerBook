@@ -181,8 +181,8 @@ class HackerTVController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //averiguamos si el segue es el correcto
         if segue.identifier == "DetalleDeCelda" {
-            //obtenemos el controlador de destino, esta creado pero no visible
-            let destino = segue.destinationViewController as? DetalledeVista
+            //obtenemos el controlador de destino, esta creado pero no visible, es el primer elemento de un navigationcontroller, asi que hay que castear
+            let destino = (segue.destinationViewController as! UINavigationController).topViewController as? DetalledeVista
             //ahora obtenemos la celda para sacar el libro que tenemos que pasar
             let ip = self.tableView.indexPathForSelectedRow
             //sabiendo la celda pulsada hay que llamar al metodo que me diga que libro, es, pero depende de si estamos mostrando la tabla ordenada o por tags
@@ -193,8 +193,9 @@ class HackerTVController: UITableViewController {
                 }
             } else {
                 if let libro = model.bookAtIndex(index: (ip?.row)!) {
-                    print("libro ", libro, "destino.libro ", destino?.libro)
                     destino?.libro = libro
+                    print("libro ", libro, "destino.libro ", destino?.libro)
+                    
                 }
             }
             
