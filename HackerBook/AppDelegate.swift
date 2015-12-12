@@ -82,14 +82,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 //que se lean en local. Se guardan en data/json data/pdfs data/imgs y el nombre que tuvieran en su momento
                 //ahora voy a generar un array de NCTBook y guardarlo en un NSData. Cuando arranque NC¡TLibray leera ese NSData. No le importara si es la primera vez o ya lleva 100 años creado
              
-                saveModel(datos: arrayLibros, inKey:"modeloLibros")
+                saveModel(datos: arrayLibros, inKey: MODELO_LIBROS)
 
             }
 
             
             
             //print("no lo tengo. Comentada la opcion de ponerlo a true para no volver a leer")
-            def.setBool(true, forKey: "firsTime")
+            def.setBool(true, forKey: FIRST_TIME)
             
         }
         

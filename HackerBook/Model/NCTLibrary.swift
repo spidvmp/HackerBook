@@ -1,4 +1,4 @@
-//
+
 //  NCTLibrary.swift
 //  HackerBook
 //
@@ -36,7 +36,7 @@ class NCTLibrary  {
         tags = Array<String>()
         
         //lo primero que tengo que hacer el recuperar el modelo de datos que esta grabado en el fichero. EN caso de que no lea nada devuelve un array vacio
-        modeloOriginal = loadModel(inKey: "modeloLibros")
+        modeloOriginal = loadModel(inKey: MODELO_LIBROS)
         
         //obtengo los tags que hay ordenados alfabeticamente, esto me servira para sacar las secciones. Aqui esta incluido Favoritos el primero
         //Todos los tags tendran algun libro, ya que el listado de tags los saco cuando me recorro los libros
@@ -72,7 +72,7 @@ class NCTLibrary  {
     //Genero una variable computada para saber rapidamente si hay o no algo en favoritos
     var hayFavoritos : Bool {
         get{
-            if  countBooksForTag("Favoritos") > 0 {
+            if  countBooksForTag(FAVORITOS) > 0 {
                 return true
             } else {
                 return false
@@ -172,7 +172,7 @@ class NCTLibrary  {
     //MARK: - Funciones de inicializacion
     func getTagsFromModel() -> [String] {
         
-        var resultado:[String] = ["Favoritos"]
+        var resultado:[String] = [FAVORITOS]
         
         //me recorro el modelo y guardo los tags en un conjunto, de esta forma me evito comprobar si se repiten, luego los ordeno, los meto en un array y lo devuelvo
         var tagSet = Set<String>()
@@ -203,6 +203,7 @@ class NCTLibrary  {
         for each in modeloOriginal {
             //pongo el tag en mayusculas xq es asi como lo tengo en la tabla de tags
             each.tags!.map({arr[$0.capitalizedString]?.insert(each)})
+            print(each.titulo," es favorito ", each.favorite)
         }
         return arr
         
@@ -218,9 +219,26 @@ class NCTLibrary  {
     }
     
     //MARK: - Notifications
-    func changeFavorite() {
-        print("change favorite ")
+    func chageFavoriteBook(libro : NCTBook?) {
         
+        //busco el libro en modeloOrigional, para ponerlo como favorito y grabarlo para la proxima vez
+        if let i = modeloOriginal.indexOf(libro!) {
+            //encontramos el indice, lo cambiamos, favorite ya llega cambiado
+            modeloOriginal[i] = libro!
+            //grabo el modelo para la proxima vez
+            saveModel(datos: modeloOriginal, inKey: MODELO_LIBROS)
+            
+            //dependiendo del valor que tenga ahora el libro, lo añado o lo quito del array de favoritos, que esta en BooksByTag[0]
+            if  libro!.favorite {
+                //es favorito, asi que lo tengo que añadir
+                booksByTags[FAVORITOS]?.insert(libro!)
+            } else {
+                //tengo que quitarlo
+                booksByTags[FAVORITOS]?.remove(libro!)
+            }
+            
+        }
+  
     }
 
 }

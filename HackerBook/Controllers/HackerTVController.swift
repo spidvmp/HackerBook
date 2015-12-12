@@ -72,6 +72,12 @@ class HackerTVController: UITableViewController {
     
     func cambiaFavorito(notification : NSNotification) {
         print("Recibo ", notification)
+        //ejecuto del mofdelo un metodo para cambiar el favorito, incluido en favoritos
+        model.chageFavoriteBook(notification.object as? NCTBook)
+        
+        //recargo la tabla
+        //self.tableView.reloadSections(Set<Int>[0,1], withRowAnimation: UITableViewRowAnimation.Automatic)
+        self.tableView.reloadData()
         
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

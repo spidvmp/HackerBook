@@ -34,6 +34,29 @@ d["B"]?.insert("Banana")
 print(d, d.count, d.values)
 //cuantos elementos hay
 
+class cl {
+    let num : Int
+    let nom : String
+    init (num : Int, nom : String) {
+        self.num = num
+        self.nom = nom
+    }
+    
+}
+
+
+
+let z : cl = cl(num: 2,nom: "pepe")
+let x : cl = cl(num: 9,nom: "lolo")
+let m : cl = cl(num: 67,nom: "oiasmdg")
+let ar : Array = [x,  m, z]
+
+if let i = ar.indexOf({$0.nom == "pepe" && $0.num == 4}) {
+    print (i)
+}
+
+
+
 
 
 
