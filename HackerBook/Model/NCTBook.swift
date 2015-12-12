@@ -30,13 +30,14 @@ class NCTBook: NSObject, NSCoding {
             //if value {
                 //es verdadero, añadir grupo favoritos envio notificacion
             
-            NSNotificationCenter.defaultCenter().postNotificationName(FAVORITE_NOTIFICATION, object: self, userInfo: ["libro": self])
+            //NSNotificationCenter.defaultCenter().postNotificationName(FAVORITE_NOTIFICATION, object: self, userInfo: ["libro": self])
             //} else {
                 //es falso, sacar de grupo favoritos
             //}
         }
         
     }
+
     
     //inicializador designado
     //MARK: - Init

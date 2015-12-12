@@ -30,12 +30,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //creamos la interfaz grafica
         sb = UIStoryboard(name: "Hackerbook", bundle: nil)
         
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeFavorite", name: FAVORITE_NOTIFICATION, object: nil)
+        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.rootViewController = sb.instantiateInitialViewController()
         window?.makeKeyAndVisible()
         return true
     }
     
+    
+//    func changeFavorite() {
+//        print("App delegate, recibo la notificacion ")
+//    }
     
     func checkDownloadedJSON () {
         //comprueba si ya se ha bajado la primera vez el json, si es que no, se lo baja, lo trata y lo guarda localemnte en un fichero

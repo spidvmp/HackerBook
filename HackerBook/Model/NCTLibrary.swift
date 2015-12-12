@@ -19,11 +19,11 @@ class NCTLibrary  {
     private var booksByTags: [String:Set<NCTBook>]
     private var modeloOriginal: [NCTBook]
     private var tags: [String]
-    
+
     
     //MARK: - init
     init(){
-        
+    
         
         //Se que tengo el modelo de libros en un fichero que he de leer y despues he de procesar para generar la tabla de libros y la tabla de tags
         //no lo proceso ni grabo desde el principio, xq si me cambian un favorito deberia modificarlo en 2 tablas y grabar 2 ficheros, asi que mantengo
@@ -52,17 +52,19 @@ class NCTLibrary  {
         //observo las notificaciones para saber si un libro ha cambiado el estado de favorito, cuando reciba una notificacion
         //se ejecuta el selector y este debera hacer todo lo necesario, meter o sacar de favoritos
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeFavorite", name: FAVORITE_NOTIFICATION, object: nil)
-        
+
         
         
     }
     
+
     deinit {
        NSNotificationCenter.defaultCenter().removeObserver(self)
         
     }
     
     //MARK: - Computed Variables
+
     
     var booksCount : Int {
         get{
@@ -225,8 +227,8 @@ class NCTLibrary  {
     }
     
     //MARK: - Notifications
-    func changeFavorite(notification : NSNotification) -> Void {
-        print("change favorite ", notification)
+    func changeFavorite() {
+        print("change favorite ")
         
     }
 

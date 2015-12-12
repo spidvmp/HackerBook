@@ -84,11 +84,14 @@ class DetalledeVista: UIViewController {
         
         //cambio el valor del libro si es favorito o no
         libro?.changeFavorite = !libro!.favorite
+        NSNotificationCenter.defaultCenter().postNotificationName(FAVORITE_NOTIFICATION, object: self, userInfo: ["libro": self])
+        //NSNotificationCenter.defaultCenter().postNotificationName(FAVORITE_NOTIFICATION, object: self)
         if libro!.favorite {
             self.favorito.setTitle("Quitar Favorito", forState: UIControlState.Normal)
         
         } else {
             self.favorito.setTitle("Favorito", forState: UIControlState.Normal)
+            //NSNotificationCenter.defaultCenter().postNotificationName(FAVORITE_NOTIFICATION, object: self, userInfo: ["libro": self])
         }
         
         
