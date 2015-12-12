@@ -30,6 +30,8 @@ class HackerTVController: UITableViewController {
         
         self.navigationItem.rightBarButtonItem = menu_button
         
+        
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -40,9 +42,16 @@ class HackerTVController: UITableViewController {
             self.navigationItem.rightBarButtonItem!.title = "Tags"
         }
         
-        
-
+        //me suscribo a las notificaciones de cambio de favoritos
+        //yo me suscribo a FAVORITE_NOTIFICATION que me llega de cualquier obejto y ejecuto "cambioFavorito"
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "cambiaFavorito:", name: FAVORITE_NOTIFICATION, object: nil)
     }
+    
+    deinit {
+        //Me quito la notificacion
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -61,10 +70,15 @@ class HackerTVController: UITableViewController {
         
     }
     
+    func cambiaFavorito(notification : NSNotification) {
+        print("Recibo ", notification)
+        
+    }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
             performSegueWithIdentifier("DetalleDeCelda", sender: indexPath)
     }
 
+    
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

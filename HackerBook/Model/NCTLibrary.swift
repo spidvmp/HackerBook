@@ -47,21 +47,12 @@ class NCTLibrary  {
         
         //genero los libros ordenados por tag, es un diccionario de tag:conjunto de libros
         booksByTags = self.getBooksByTag()
-        
-        
-        //observo las notificaciones para saber si un libro ha cambiado el estado de favorito, cuando reciba una notificacion
-        //se ejecuta el selector y este debera hacer todo lo necesario, meter o sacar de favoritos
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeFavorite", name: FAVORITE_NOTIFICATION, object: nil)
+
 
         
         
     }
     
-
-    deinit {
-       NSNotificationCenter.defaultCenter().removeObserver(self)
-        
-    }
     
     //MARK: - Computed Variables
 
