@@ -110,7 +110,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             def.setBool(true, forKey: FIRST_TIME)
             //ademas pongo por defecto un valor al utlimo libro leido para que aparezca algo. Pongo el primer libro que se sacara del array de libros, asi que el 0
             def.setInteger(0, forKey: LAST_BOOK)
-        
+            //pongo por defecto estilo de la tabla alfabeticamente
+            def.setBool(false, forKey: LAST_STYLE)
         }
         
         

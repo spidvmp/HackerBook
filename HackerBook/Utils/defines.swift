@@ -24,4 +24,6 @@ let FIRST_TIME = "firsTime"
 
 //ultimo libro visitado
 let LAST_BOOK = "lastBook"
+//ultimo estilo de tabla visitado, tags o alfabetiocamente
+let LAST_STYLE = "laststyle"
 

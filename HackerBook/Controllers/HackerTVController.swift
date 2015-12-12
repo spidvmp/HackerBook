@@ -34,8 +34,13 @@ class HackerTVController: UITableViewController {
             self.detalleDeVista = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetalledeVista
             
             //pongo el ultimo libro visitado cuando arranca por primera vez, lo guardo en Userdefault
-            let last = NSUserDefaults.standardUserDefaults().integerForKey(LAST_BOOK)
+            let def = NSUserDefaults.standardUserDefaults()
+            let last = def.integerForKey(LAST_BOOK)
             self.detalleDeVista?.libro = model.bookAtIndex(index: last)
+            
+            //cargo la ultima configuracion del estilo
+            self.orderByTags = def.boolForKey(LAST_STYLE)
+            
         }
         
     }
@@ -68,6 +73,9 @@ class HackerTVController: UITableViewController {
     //MARK: - Actions
     func cambiaVista() {
         orderByTags = !orderByTags
+        //guardo el ultimo estilo de vista mostrado
+        NSUserDefaults.standardUserDefaults().setBool(self.orderByTags, forKey: LAST_STYLE)
+        
         if orderByTags {
             self.navigationItem.rightBarButtonItem!.title = "Alfa"
         } else {
