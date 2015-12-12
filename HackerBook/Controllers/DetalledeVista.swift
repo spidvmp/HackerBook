@@ -37,7 +37,7 @@ class DetalledeVista: UIViewController {
 
         }
         didSet {
-            updateUI()
+            self.updateUI()
 
         }
     }
@@ -46,10 +46,13 @@ class DetalledeVista: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.updateUI()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        print("VISTA CARGADA")
+        
         //updateUI()
     }
     
@@ -66,24 +69,36 @@ class DetalledeVista: UIViewController {
         //El titulo lo pongo en un textview porque hay titulos muy grandes, asi ocupan varias lineas
         
         //es posible que libro llegue a nil, asi que se comprueba, si tiene datos se rellena
+        //ademas hay que comprobar cada OUTLET antes de asignarlo xq es posible que la primera vez no este todavia creado, y petaria
         if let l = self.libro {
             //si libro tiene valor relleno
-            tituloText.text = l.titulo
-            autores.text = l.autores?.joinWithSeparator(", ")
-            tags.text = l.tags?.joinWithSeparator(", ")
+            if let tit = self.tituloText {
+                tit.text = l.titulo
+            }
+            if let aut = self.autores {
+                aut.text = l.autores?.joinWithSeparator(", ")
+            }
+            if let tg = self.tags {
+                tg.text = l.tags?.joinWithSeparator(", ")
+            }
+            //saco directorios
             let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-            
             let docsDir = dirPaths[0]
             
-            portada.image = UIImage(contentsOfFile: docsDir.stringByAppendingString((l.imagenPath)!))
-            portada.layer.cornerRadius = 5.0
-            portada.clipsToBounds = true
+            if let port = self.portada {
+                port.image = UIImage(contentsOfFile: docsDir.stringByAppendingString((l.imagenPath)!))
+                port.layer.cornerRadius = 5.0
+                port.clipsToBounds = true
+            }
             
-            if l.favorite {
-                self.favorito.setTitle("Quitar Favorito", forState: UIControlState.Normal)
-                
-            } else {
-                self.favorito.setTitle("Favorito", forState: UIControlState.Normal)
+            if let fv = self.favorito {
+                if l.favorite {
+                    
+                    fv.setTitle("Quitar Favorito", forState: UIControlState.Normal)
+                    
+                } else {
+                    fv.setTitle("Favorito", forState: UIControlState.Normal)
+                }
             }
         }
         
