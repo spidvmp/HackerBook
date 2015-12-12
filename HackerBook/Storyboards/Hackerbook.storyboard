@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gjY-Of-0YD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ru6-cA-wGn">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -29,7 +29,7 @@
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
-                                    <segue destination="LO0-ys-Fm1" kind="show" identifier="DetalleDeCelda" id="J9H-ki-I9v"/>
+                                    <segue destination="Yx2-Um-zMr" kind="showDetail" identifier="DetalleDeCelda" id="a6E-Ni-D2R"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -42,7 +42,20 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dN1-vA-lcf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="590" y="429"/>
+            <point key="canvasLocation" x="1192" y="969"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="Mlp-Wm-s4k">
+            <objects>
+                <splitViewController id="ru6-cA-wGn" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="gjY-Of-0YD" kind="relationship" relationship="masterViewController" id="hdZ-Tg-Vh5"/>
+                        <segue destination="Yx2-Um-zMr" kind="relationship" relationship="detailViewController" id="UVv-fi-lIo"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G1g-gA-YTd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-793" y="1440"/>
         </scene>
         <!--Libro-->
         <scene sceneID="7xV-1s-kfz">
@@ -73,30 +86,6 @@
                                     <rect key="frame" x="20" y="109" width="98" height="134"/>
                                 </variation>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jl3-jk-e0i">
-                                <rect key="frame" x="135" y="175" width="445" height="130"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="jl3-jk-e0i" secondAttribute="height" multiplier="89:26" id="W6Q-dJ-AAk"/>
-                                    <constraint firstAttribute="height" constant="130" id="kiq-mN-Gbw"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="22"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="304" y="123" width="273" height="210"/>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="205" y="110" width="575" height="168"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="126" y="109" width="232" height="203"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="304" y="111" width="476" height="318"/>
-                                </variation>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXH-lg-FHH">
                                 <rect key="frame" x="20" y="319" width="560" height="20"/>
                                 <animations/>
@@ -105,7 +94,7 @@
                                     <constraint firstAttribute="width" secondItem="mXH-lg-FHH" secondAttribute="height" multiplier="28:1" id="dG4-tc-Bug"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="309" y="346" width="268" height="20"/>
@@ -169,6 +158,30 @@
                                     <segue destination="aFm-EW-4oC" kind="show" identifier="PDFView" id="hFs-XU-b3e"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jl3-jk-e0i">
+                                <rect key="frame" x="135" y="175" width="445" height="130"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jl3-jk-e0i" secondAttribute="height" multiplier="89:26" id="W6Q-dJ-AAk"/>
+                                    <constraint firstAttribute="height" constant="130" id="kiq-mN-Gbw"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="22"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="304" y="123" width="273" height="210"/>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="205" y="110" width="575" height="168"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="126" y="109" width="232" height="203"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="304" y="111" width="476" height="318"/>
+                                </variation>
+                            </textView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -193,6 +206,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="mXH-lg-FHH" secondAttribute="trailing" id="xjS-e4-RRN"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="IL8-d6-ckz"/>
                     <connections>
                         <outlet property="autores" destination="mXH-lg-FHH" id="yRC-wo-bBg"/>
                         <outlet property="favorito" destination="V0h-hb-0mT" id="2d7-Cb-OiF"/>
@@ -204,7 +218,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v3G-c8-bCM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1296" y="438"/>
+            <point key="canvasLocation" x="1252" y="1999"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hNq-8m-2Be">
+            <objects>
+                <navigationController id="Yx2-Um-zMr" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="R62-YB-Nxk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LO0-ys-Fm1" kind="relationship" relationship="rootViewController" id="8qm-6h-mkd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ih-y8-OoX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="399" y="1999"/>
         </scene>
         <!--PDF Reader-->
         <scene sceneID="wGx-L6-cSe">
@@ -239,12 +270,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t6t-Ap-yGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2077" y="438"/>
+            <point key="canvasLocation" x="2053" y="1999"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Master-->
         <scene sceneID="cKS-XM-y53">
             <objects>
-                <navigationController id="gjY-Of-0YD" sceneMemberID="viewController">
+                <navigationController title="Master" id="gjY-Of-0YD" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="L5i-Ku-iSj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -256,7 +287,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bi7-QW-oc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-206" y="449"/>
+            <point key="canvasLocation" x="394" y="969"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="a6E-Ni-D2R"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -13,28 +13,35 @@ class HackerTVController: UITableViewController {
     var model : NCTLibrary!
     //defino un Bool para indicar si tengo que mostrar la tabla ordenada por libros alfabeticos o por tags
     var orderByTags : Bool = false
+    //con esto recogemos que controlador es de detalle (DEtalledeVista)
+    var detalleDeVista: DetalledeVista? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         //cargo el modelo
         model = NCTLibrary()
         
-        //creo el boton para cambiar de vista
+        //creo el boton para cambiar la vista de la tabla de tags a alfabetico, no le doy valor xq se actualizara en el willappear
         let menu_button = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain , target: self, action: "cambiaVista")
         
         self.navigationItem.rightBarButtonItem = menu_button
-        
-        
 
+        //compruebo que el split
+        if let split = self.splitViewController {
+            let controllers = split.viewControllers
+            //Me quedo con el puntero al controlador de detalle
+            self.detalleDeVista = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetalledeVista
+            
+            //pongo el ultimo libro visitado cuando arranca por primera vez, lo guardo en Userdefault
+            let last = NSUserDefaults.standardUserDefaults().integerForKey(LAST_BOOK)
+            self.detalleDeVista?.libro = model.bookAtIndex(index: last)
+        }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
         super.viewWillAppear(animated)
         if orderByTags {
             self.navigationItem.rightBarButtonItem!.title = "Alfa"
@@ -199,20 +206,26 @@ class HackerTVController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //averiguamos si el segue es el correcto
         if segue.identifier == "DetalleDeCelda" {
-            //obtenemos el controlador de destino, esta creado pero no visible
-            let destino = segue.destinationViewController as? DetalledeVista
+            //obtenemos el controlador de destino, esta creado pero no visible, es el primer elemento de un navigationcontroller, asi que hay que castear
+            let destino = (segue.destinationViewController as! UINavigationController).topViewController as! DetalledeVista
+            //Hago que aparezca el boton
+            destino.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+            destino.navigationItem.leftItemsSupplementBackButton = true
             //ahora obtenemos la celda para sacar el libro que tenemos que pasar
             let ip = self.tableView.indexPathForSelectedRow
             //sabiendo la celda pulsada hay que llamar al metodo que me diga que libro, es, pero depende de si estamos mostrando la tabla ordenada o por tags
             if  orderByTags {
                 if let libro = model.bookAtIndexPath(indexPath: ip!) {
-                    destino?.libro = libro
+                    destino.libro = libro
                 }
             } else {
                 if let libro = model.bookAtIndex(index: (ip?.row)!) {
-                    destino?.libro = libro
+                    destino.libro = libro
                 }
             }
+            
+            //ya tengo el libro que es. Lo guardo en el userdefaults para que la proxima vez que arranque la app aparezca
+            model.saveLastBook( destino.libro!)
             
         }
     }

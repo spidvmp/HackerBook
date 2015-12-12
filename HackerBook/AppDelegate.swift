@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
 
@@ -23,20 +23,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //hay que comprobar si es la primera vez y bajar el json de internet
         checkDownloadedJSON()
         
-        //cuando salimos de aqui, si es la primera vez se ha cargado todo, si no no ha hecho nada
-        //El modelo esta grabado en ./info/model.data
-
-        
         //creamos la interfaz grafica
         sb = UIStoryboard(name: "Hackerbook", bundle: nil)
+       
+        //definimos el tamaño de la pantall
+
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        //Le indicamos que el rootvirecontroller es la primera pantalla del Storyboard
+        window?.rootViewController = sb.instantiateInitialViewController()
+        
+        //genero el controlador del split, que es el root casteado a UISplitviewController
+        let splitViewController = self.window!.rootViewController as! UISplitViewController
+        //el controlador izquierdo es el primer elemento del splitviewcontroller
+        let leftNavController = splitViewController.viewControllers.first as! UINavigationController
+        
+        //pongo el boton del detalle cuando se gira
+        leftNavController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+        
+        //pongo el delegado
+        splitViewController.delegate = self
+        //
+        //let masterViewController = leftNavController.topViewController as! HackerTVController
+        
+        //el detailcontroller es el segundo de los controladores del splitviewcontroller
+        //let detailViewController = splitViewController.viewControllers.last as! DetalledeVista
 
         
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = sb.instantiateInitialViewController()
+        
         window?.makeKeyAndVisible()
         return true
     }
     
+    // MARK: - Split view
+    
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController:UIViewController, ontoPrimaryViewController primaryViewController:UIViewController) -> Bool {
+        guard let secondaryAsNavController = secondaryViewController as? UINavigationController else { return false }
+        guard let topAsDetailController = secondaryAsNavController.topViewController as? DetalledeVista else { return false }
+        if topAsDetailController.libro == nil {
+            // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
+            return true
+        }
+        return false
+    }
+
 
     func checkDownloadedJSON () {
         //comprueba si ya se ha bajado la primera vez el json, si es que no, se lo baja, lo trata y lo guarda localemnte en un fichero
@@ -65,15 +94,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } catch let error as NSError {
                 print(error.localizedDescription);
             }
-//            let pdf = docsDir.stringByAppendingString("/info/pdf")
-//            do {
-//                try filemgr.createDirectoryAtPath(pdf, withIntermediateDirectories: true, attributes: nil)
-//            } catch let error as NSError {
-//                print(error.localizedDescription);
-//            }
-            
-            
-            
             
             //es la primera vez, me tengo que bajar todo y tratarlo
             //dowloadJSON se baja el JSOn trata los datos, se baja las imagenes y pdf y devuelve un array de SrtuctBook
@@ -86,11 +106,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             }
 
-            
-            
-            //print("no lo tengo. Comentada la opcion de ponerlo a true para no volver a leer")
+            //es la primera y unica vez que se supone que pasara por aqui. Lo marcomo como que ya ha pasado
             def.setBool(true, forKey: FIRST_TIME)
-            
+            //ademas pongo por defecto un valor al utlimo libro leido para que aparezca algo. Pongo el primer libro que se sacara del array de libros, asi que el 0
+            def.setInteger(0, forKey: LAST_BOOK)
+        
         }
         
         

@@ -21,3 +21,7 @@ let FAVORITE_NOTIFICATION = "Favoritoghmfghmfghmn"
 let MODELO_LIBROS = "modeloLibros"
 //clave para la primera vez de carga de datos
 let FIRST_TIME = "firsTime"
+
+//ultimo libro visitado
+let LAST_BOOK = "lastBook"
+

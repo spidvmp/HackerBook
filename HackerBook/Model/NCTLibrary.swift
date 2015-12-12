@@ -93,7 +93,7 @@ class NCTLibrary  {
         
     }
     
-    //MARK: - Datasource dlegate Libros por tag
+    //MARK: - Datasource delegate Libros por tag
     func countNumberOfTags() -> Int {
         //he de comprbar si hay algo en favoritos
         //if  countBooksForTag("Favoritos") > 0 {
@@ -140,7 +140,7 @@ class NCTLibrary  {
         }
         
         //ahora lo ordeno alfabeticamente
-        librosConTag.sort({$0 < $1})
+        librosConTag.sortInPlace({$0 < $1})
 
         return librosConTag
         
@@ -220,6 +220,7 @@ class NCTLibrary  {
         
     }
     
+
     //MARK: - Notifications
     func chageFavoriteBook(libro : NCTBook?) {
         
@@ -240,7 +241,17 @@ class NCTLibrary  {
             }
             
         }
-  
     }
+
+    func saveLastBook(libro: NCTBook) {
+        //han seleccionado un libro, guardo el indice que tienen en la tabla books para que vuelva a aparecer alcargar la app
+        //busco el indice
+        if let i = books.indexOf({$0.titulo == libro.titulo}) {
+            //esta en i, lo guardo
+            NSUserDefaults.standardUserDefaults().setInteger(i, forKey: LAST_BOOK)
+        }
+
+    }
+
 
 }
