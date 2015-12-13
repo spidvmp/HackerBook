@@ -19,17 +19,54 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LibroCell" id="HJK-kr-ym5">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Libro" rowHeight="50" id="HJK-kr-ym5">
+                                <rect key="frame" x="0.0" y="92" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HJK-kr-ym5" id="0Je-Xb-guG">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </tableViewCellContentView>
                                 <animations/>
                                 <connections>
                                     <segue destination="Yx2-Um-zMr" kind="showDetail" identifier="DetalleDeCelda" id="a6E-Ni-D2R"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LibroCell" rowHeight="50" id="x1C-Qx-8bJ" customClass="BookCell" customModule="HackerBook" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="142" width="600" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x1C-Qx-8bJ" id="TQp-xL-cZo">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aiV-g6-usE">
+                                            <rect key="frame" x="22" y="2" width="45" height="45"/>
+                                            <animations/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciP-a6-V0O">
+                                            <rect key="frame" x="88" y="14" width="376" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ciP-a6-V0O" secondAttribute="bottom" id="8JW-ld-VxX"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="aiV-g6-usE" secondAttribute="bottom" id="CaO-Sx-dld"/>
+                                        <constraint firstItem="ciP-a6-V0O" firstAttribute="top" secondItem="TQp-xL-cZo" secondAttribute="topMargin" constant="6" id="LOJ-g5-gbB"/>
+                                        <constraint firstItem="aiV-g6-usE" firstAttribute="top" secondItem="TQp-xL-cZo" secondAttribute="topMargin" id="NBc-lI-JJ6"/>
+                                        <constraint firstItem="ciP-a6-V0O" firstAttribute="leading" secondItem="aiV-g6-usE" secondAttribute="trailing" constant="21" id="Vgt-Ua-8ZE"/>
+                                        <constraint firstItem="aiV-g6-usE" firstAttribute="leading" secondItem="TQp-xL-cZo" secondAttribute="leadingMargin" constant="14" id="j1a-8E-CeM"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <color key="backgroundColor" red="0.92899823188781738" green="0.91910701990127563" blue="0.2860696017742157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="portada" destination="aiV-g6-usE" id="PCy-vV-dBX"/>
+                                    <outlet property="titulo" destination="ciP-a6-V0O" id="faq-6l-94E"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
