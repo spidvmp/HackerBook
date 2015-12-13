@@ -13,6 +13,7 @@ class BookCell: UITableViewCell {
     @IBOutlet weak var portada: UIImageView!
 
     @IBOutlet weak var titulo: UILabel!
+    @IBOutlet weak var autores: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

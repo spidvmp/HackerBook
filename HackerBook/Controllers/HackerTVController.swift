@@ -138,6 +138,7 @@ class HackerTVController: UITableViewController {
 //        cell.textLabel?.text = libro?.titulo
 //        cell?.detailTextLabel?.text = libro?.autores?.joinWithSeparator(", ")
         cell.titulo.text = libro?.titulo
+        cell.autores.text = libro?.autores?.joinWithSeparator(", ")
         let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         
         let docsDir = dirPaths[0]
