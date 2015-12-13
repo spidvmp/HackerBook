@@ -120,7 +120,7 @@ class DetalledeVista: UIViewController {
             self.favorito.setTitle("Quitar Favorito", forState: UIControlState.Normal)
         
         } else {
-            self.favorito.setTitle("Favorito", forState: UIControlState.Normal)
+            self.favorito.setTitle("Hacer Favorito", forState: UIControlState.Normal)
             //NSNotificationCenter.defaultCenter().postNotificationName(FAVORITE_NOTIFICATION, object: self, userInfo: ["libro": self])
         }
         

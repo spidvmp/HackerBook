@@ -17,6 +17,7 @@ class BookCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        titulo.textColor = UIColor.defaultColorHacker()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

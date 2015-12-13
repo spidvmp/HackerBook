@@ -57,6 +57,8 @@ class HackerTVController: UITableViewController {
         //me suscribo a las notificaciones de cambio de favoritos
         //yo me suscribo a FAVORITE_NOTIFICATION que me llega de cualquier obejto y ejecuto "cambioFavorito"
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "cambiaFavorito:", name: FAVORITE_NOTIFICATION, object: nil)
+        
+        self.tableView.rowHeight = 55
     }
     
     deinit {
@@ -168,6 +170,8 @@ class HackerTVController: UITableViewController {
         return headerView;
         
     }
+    
+    
     
 
     /*
