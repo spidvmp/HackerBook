@@ -44,16 +44,13 @@ class DetalledeVista: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Libro=",libro)
         // Do any additional setup after loading the view.
         self.updateUI()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("VISTA CARGADA")
-        
-        //updateUI()
+        print(" masterbuton ", self.navigationItem.leftBarButtonItems?[0].title)
     }
     
     
