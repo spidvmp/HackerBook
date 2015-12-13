@@ -97,7 +97,7 @@ class DetalledeVista: UIViewController {
                     fv.setTitle("Quitar Favorito", forState: UIControlState.Normal)
                     
                 } else {
-                    fv.setTitle("Favorito", forState: UIControlState.Normal)
+                    fv.setTitle("Hacer Favorito", forState: UIControlState.Normal)
                 }
             }
         }
