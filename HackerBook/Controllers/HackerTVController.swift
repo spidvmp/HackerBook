@@ -91,7 +91,7 @@ class HackerTVController: UITableViewController {
         
         //recargo la tabla
         self.tableView.reloadData()
-self.tableView.dele
+
         }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
             performSegueWithIdentifier("DetalleDeCelda", sender: indexPath)
@@ -225,15 +225,21 @@ self.tableView.dele
             if  orderByTags {
                 if let libro = model.bookAtIndexPath(indexPath: ip!) {
                     destino.libro = libro
+                    //enviamos uina notificacion a PDFView para que vaya cargando el pdf
+                    NSNotificationCenter.defaultCenter().postNotificationName(BOOK_DID_CHANGE, object: self, userInfo: ["book": libro])
                 }
             } else {
                 if let libro = model.bookAtIndex(index: (ip?.row)!) {
                     destino.libro = libro
+                    //enviamos uina notificacion a PDFView para que vaya cargando el pdf
+                    NSNotificationCenter.defaultCenter().postNotificationName(BOOK_DID_CHANGE, object: self, userInfo: ["book": libro])
                 }
             }
             
             //ya tengo el libro que es. Lo guardo en el userdefaults para que la proxima vez que arranque la app aparezca
             model.saveLastBook( destino.libro!)
+            
+            
             
         }
     }

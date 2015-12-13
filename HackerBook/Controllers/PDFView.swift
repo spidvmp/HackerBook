@@ -9,7 +9,7 @@
 import UIKit
 
 
-class PDFView: UIViewController {
+class PDFView: UIViewController, UIWebViewDelegate {
     
     
     @IBOutlet weak var pdfWebView: UIWebView!
@@ -18,11 +18,9 @@ class PDFView: UIViewController {
         //observador de propiedades, sirve para saber cuando se ha modificado una propiedad
         //willSet se llama antes de asignarse la variable y didSet despues de asignarse, asi que en willSet libro es nil y en didSet ya tiene valor
         willSet {
-            print("will ",libro)
+            
         }
         didSet {
-            
-            print("did ",libro)
             updateUI()
         }
     }
@@ -35,11 +33,21 @@ class PDFView: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let docsDir = dirPaths[0]
-        let pdf = NSURL(fileURLWithPath: docsDir.stringByAppendingString((libro?.pdfPath)!))
-        let pdfreq = NSURLRequest(URL: pdf)
-        pdfWebView.loadRequest(pdfreq)
+        
+        self.pdfWebView.delegate = self
+        
+        //muestra el pdf
+        showPDF()
+        
+        //me apunto a a las notificaciones de cambio de libro
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "bookDidChange:", name: BOOK_DID_CHANGE, object: nil)
+        
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     
@@ -55,15 +63,29 @@ class PDFView: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func showPDF() {
+        let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let docsDir = dirPaths[0]
+        let pdf = NSURL(fileURLWithPath: docsDir.stringByAppendingString((libro?.pdfPath)!))
+        let pdfreq = NSURLRequest(URL: pdf)
+        pdfWebView.loadRequest(pdfreq)
+        
     }
-    */
+    
+    func bookDidChange(not : NSNotification ){
+        //libro = not.object as? NCTBook
+        if let dic = not.userInfo as? Dictionary<String, NCTBook> {
+            libro = dic["book"]!
+            
+        }
+        
+        //print(dic, "---", dic[0])
+        //libro = not.userInfo![0]?.objectForKey("book")
+        
+            
+        showPDF()
+        
+    }
+
 
 }

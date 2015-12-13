@@ -15,7 +15,8 @@ import Foundation
 let FAVORITOS = "Favoritos"
 
 //nombre de la notificaicon cuando un libro cambia de valor favorito
-let FAVORITE_NOTIFICATION = "Favoritoghmfghmfghmn"
+let FAVORITE_NOTIFICATION = "Favorito"
+let BOOK_DID_CHANGE = "Librohacambiado"
 
 //define de keys de NSUserdefaults para grabar el modelo
 let MODELO_LIBROS = "modeloLibros"
@@ -26,4 +27,5 @@ let FIRST_TIME = "firsTime"
 let LAST_BOOK = "lastBook"
 //ultimo estilo de tabla visitado, tags o alfabetiocamente
 let LAST_STYLE = "laststyle"
+
 
