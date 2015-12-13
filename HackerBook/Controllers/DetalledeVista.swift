@@ -16,15 +16,6 @@ class DetalledeVista: UIViewController {
     @IBOutlet weak var tituloText: UITextView!
     @IBOutlet weak var favorito: UIButton!
     @IBOutlet weak var leer: UIButton!
-    
-//    //defino detailItem que es el 
-//    var detailItem: AnyObject? {
-//        didSet {
-//            // Update the view.
-//            self.configureView()
-//        }
-//    }
-
 
     //defino el modelo de libro que voy a recibir, sobre este hay que modificar la vista
     //defino libro como opcional y asi me evito los inicializadores
@@ -50,7 +41,7 @@ class DetalledeVista: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print(" masterbuton ", self.navigationItem.leftBarButtonItems?[0].title)
+
     }
     
     

@@ -42,7 +42,6 @@ class NCTBook: NSObject, NSCoding {
     //inicializador designado
     //MARK: - Init
     //favorito por defecto es falso
-    //init(titulo: String? , autores:[String]? , tags:[String]?, urlImagen: String?, urlPDF: String?, photo: NSURL?, pdf : NSURL?, favorite: Bool = false){
     init(titulo: String? , autores:[String]? , tags:[String]?, nombreImagen: String?, nombrePdf: String?, imagenPath: String?, pdfPath: String?, favorite: Bool = false){
         
         self.titulo = titulo

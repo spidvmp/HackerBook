@@ -58,7 +58,10 @@ class HackerTVController: UITableViewController {
         //yo me suscribo a FAVORITE_NOTIFICATION que me llega de cualquier obejto y ejecuto "cambioFavorito"
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "cambiaFavorito:", name: FAVORITE_NOTIFICATION, object: nil)
         
+        //configuro algunas cosas de la tabla
         self.tableView.rowHeight = 55
+        self.tableView.separatorColor = UIColor.defaultColorHacker()
+        self.tableView.sectionIndexBackgroundColor = UIColor.defaultColorHacker()
     }
     
     deinit {
@@ -122,10 +125,7 @@ class HackerTVController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("LibroCell", forIndexPath: indexPath) as! BookCell
-        
-//        if  cell == nil {
-//            cell = UITableViewCell(style: .Subtitle, reuseIdentifier: "Libros")
-//        }
+
         var libro : NCTBook?
         //libro = <NCTBook>
         
@@ -135,10 +135,7 @@ class HackerTVController: UITableViewController {
         } else {
             libro = model.bookAtIndex(index: indexPath.row)
         }
-        
-        
-//        cell.textLabel?.text = libro?.titulo
-//        cell?.detailTextLabel?.text = libro?.autores?.joinWithSeparator(", ")
+
         cell.titulo.text = libro?.titulo
         cell.autores.text = libro?.autores?.joinWithSeparator(", ")
         let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
@@ -151,64 +148,23 @@ class HackerTVController: UITableViewController {
         return cell
     }
     
-
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        
-        let headerView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 20))
-        let label = UILabel(frame: CGRectMake(0, 0, tableView.bounds.size.width, 20))
-        
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if orderByTags {
-            label.text = model.tagNameForSection(section)
+            return model.tagNameForSection(section)
         } else {
-            label.text = ""
+            return ""
         }
-        label.backgroundColor = UIColor.defaultColorHacker()
-        
-        
-        headerView.addSubview(label)
-        return headerView;
-        
     }
     
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        if let v = view as?UITableViewHeaderFooterView {
+            v.backgroundView?.backgroundColor = UIColor.defaultColorHacker()
+        }
+        
+
+    }
     
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
@@ -243,12 +199,7 @@ class HackerTVController: UITableViewController {
             
             //ya tengo el libro que es. Lo guardo en el userdefaults para que la proxima vez que arranque la app aparezca
             model.saveLastBook( destino.libro!)
-            
-            
-            
+
         }
     }
-
-
-
 }

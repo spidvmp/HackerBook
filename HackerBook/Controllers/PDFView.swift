@@ -76,13 +76,8 @@ class PDFView: UIViewController, UIWebViewDelegate {
         //libro = not.object as? NCTBook
         if let dic = not.userInfo as? Dictionary<String, NCTBook> {
             libro = dic["book"]!
-            
         }
-        
-        //print(dic, "---", dic[0])
-        //libro = not.userInfo![0]?.objectForKey("book")
-        
-            
+
         showPDF()
         
     }

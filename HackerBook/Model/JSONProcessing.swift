@@ -90,7 +90,6 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
     let dirPaths =   NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
     
     let docsDir = dirPaths[0]
-//print(docsDir)
     //saco datos que no hay que comprobar
     let titulo = l[JSONKeys.titulo.rawValue] as? String
     
@@ -112,9 +111,6 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
 
     //comprobamos la imagen
     guard let imageUrl = l[JSONKeys.imagen.rawValue] as? String
-        //imageName = imageUrl.componentsSeparatedByString("/")
-        //imagen = imageName[imageName.count]
-        //imagen = UIImage(named: imageUrl)
         else {
             print("error con la imagen")
             throw JSONProcessingError.ResourcePointedByURLNotReachable
@@ -140,9 +136,6 @@ func decodeJSONDictionaryToStructBook(libro l:JSONDictionary) throws -> StructBo
     //genero el path corto sin el camino principal, que lo ponga cada vez ios, solo me quedo desde  info en adelante
     let shortPath = "/info/".stringByAppendingString((titulo?.removeWhitespaces())!).stringByAppendingString("/")
     let path = docsDir.stringByAppendingString(shortPath)
-    //let path = NSBundle.mainBundle().bundlePath.stringByAppendingString("/info/").stringByAppendingString((titulo?.removeWhitespaces())!).stringByAppendingString("/")
-    
-    
     do {
         try filemgr.createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil)
     } catch let error as NSError {

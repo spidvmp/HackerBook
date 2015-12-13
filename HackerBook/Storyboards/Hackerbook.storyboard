@@ -44,16 +44,22 @@
                                             <rect key="frame" x="20" y="5" width="45" height="45"/>
                                             <animations/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciP-a6-V0O">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciP-a6-V0O">
                                             <rect key="frame" x="84" y="5" width="508" height="23"/>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="ciP-a6-V0O" secondAttribute="height" multiplier="508:23" id="uqH-eh-ajM"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" name="Palatino-Roman" family="Palatino" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laj-iK-REr">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laj-iK-REr">
                                             <rect key="frame" x="84" y="31" width="508" height="19"/>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="laj-iK-REr" secondAttribute="height" multiplier="508:19" id="UVX-xD-KQ2"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" name="Palatino-Italic" family="Palatino" pointSize="13"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>

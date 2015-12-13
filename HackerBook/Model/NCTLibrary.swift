@@ -47,10 +47,7 @@ class NCTLibrary  {
         
         //genero los libros ordenados por tag, es un diccionario de tag:conjunto de libros
         booksByTags = self.getBooksByTag()
-
-
-        
-        
+       
     }
     
     
